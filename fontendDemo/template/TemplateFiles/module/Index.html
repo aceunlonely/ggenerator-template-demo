@@ -1,0 +1,218 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/icon.css" rel="stylesheet" />
+    <link type="text/css" href="../../res/css/dc.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../dcUIFramework/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/dc.framework-0.0.1.js"></script>
+    <script type="text/javascript" src="../../dc.pageConfig.js"></script>
+    <title>${data.bigModule} Index</title>
+</head>
+<body>
+    <div class="dc-form-wrapper">
+        <form>
+            <div class="dc-search-wrapper dc-panel">
+                <div class="dc-panel-head">
+                    <span class="dc-sitePath">当前位置：  </span>
+                    <a id="s_search" dcc="button" dpm="page-index-search" class="dc-btn dc-btn-search">查询</a>
+                    <a id="s_searchHidden" dcc="button" class="dc-searchHidden dc-btn dc-btn-hideSearch">隐藏查询</a>
+                </div>
+                <div class="dc-panel-body">
+                    <!-- 查询条件 -->
+                    <table class="dc-searchTable">
+                        <% var temp = 0; %>
+                        {@each data.fields.rows as di, index}
+                            {@if di.isQueryConditionShow == "Y"}
+                            
+                                {@if temp % data.pageColumnCount == 0}
+                        <tr>   
+                                {@/if}
+                            <th>${di.FIELDDESC}</th>
+                            <td>$${di|generateIndexControls}</td>
+                                {@if temp % data.pageColumnCount == data.pageColumnCount -1 }
+                        </tr>   
+                                {@/if}
+                                <% temp = temp + 1; %>
+                            {@/if}
+                        {@/each}
+                        {@if temp % data.pageColumnCount >0 }
+                        </tr>
+                        {@/if}
+                    </table>
+                </div>
+            </div>
+            <div class="dc-toolbar-wrapper dc-panel">
+                <div class="dc-panel-body">
+                    {@if contains("1",data.businessMethodTypes)}
+                    <a id="t_add" dcc="button" dpm="page-index-add" class="dc-btn dc-btn-add">新增</a>
+                    {@/if}
+                    {@if contains("2",data.businessMethodTypes)}
+                    <a id="t_edit" dcc="button" dpm="page-index-edit" class="dc-btn dc-btn-edit">修改</a>
+                    {@/if}
+                    {@if contains("3",data.businessMethodTypes)}
+                    <a id="t_del" dcc="button" dpm="page-index-delete" class="dc-btn dc-btn-del">删除</a>
+                    {@/if}
+                    {@if data.isGenerateImport == "true"}
+                    <a id="t_import" dcc="button" dpm="page-index-import" class="dc-btn dc-btn-import">导入</a>
+                    {@/if}
+                    {@if data.isGenerateExport == "true"}
+                    <a id="t_export" dcc="button" dpm="page-index-export" class="dc-btn dc-btn-export">导出</a>
+                    {@/if}
+                </div>
+            </div>
+            <div class="dc-grid-wrapper dc-panel">
+                <table id="g_table" dcc="datagrid"></table>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    dcReady(function () {
+        //统一页面参数区域
+        var moduleUrl = dc.project.backendUrl + "/${data.moduleName}";
+
+        //控件定义区域
+        dc.config = {
+            page: {
+                pagecode: "page-index"
+            },
+            //字段验证区域
+            fieldValid: {
+            },
+            //控件配置区域
+            control:
+            {
+                {@each data.fields.rows as di, index}
+                        {@if di.isQueryConditionShow == "Y"}
+                            {@if di.controlType == "autocomplete" && di.codeType!="" }
+                "s_${di.FIELDDESC|getDcm}": { code: "${d.codeType}" },               
+                            {@/if}
+                        {@/if}
+                {@/each}
+                "s_search":{onClick:dc_search},
+                {@if contains("1",data.businessMethodTypes)}
+                "t_add": { "iconCls": "icon-dc-add" ,onClick:dc_add},
+                {@/if}
+                {@if contains("2",data.businessMethodTypes)}
+                "t_edit": { "iconCls": "icon-dc-edit",onClick:dc_edit },
+                {@/if}
+                {@if contains("3",data.businessMethodTypes)}
+                "t_del": { "iconCls": "icon-dc-remove",onClick:dc_del },
+                {@/if}
+                {@if data.isGenerateImport == "true"}
+                "t_import": { "iconCls": "icon-dc-import",onClick:dc_import },
+                {@/if}
+                {@if data.isGenerateExport == "true"}
+                "t_export": { "iconCls": "icon-dc-export",onClick:dc_export },
+                {@/if}
+                "g_table": {
+                    url: moduleUrl + "/getList",
+                    idField: "oid",
+                    method: "POST",
+                    columns: [[
+                <% var temp1 =0;%>
+                {@each data.fields.rows as di, index}
+                        {@if di.isTableShow == "Y"}
+                            {@if di.DBTYPE == "datetime"}
+                        {@if temp1>0},{@/if}{ title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}', formatter: dc.out.dateFormatter }
+                            {@else}
+                        {@if temp1>0},{@/if}{ title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}' }
+                            {@/if}
+
+                            <% temp1 =temp1 + 1;%>
+                        {@/if}
+                {@/each}
+                    ]]
+                }
+
+            }
+        };
+        //初始化所有控件
+        dc.init();
+
+        //事件区域
+        //查询
+        function dc_search() {
+            $('#g_table').datagrid('reload', dc.getModel("form"));
+        };
+        {@if contains("1",data.businessMethodTypes)}
+        //新增
+        function dc_add() {
+            var addUrl = dc.util.getUrl() + ("/Tabs.html?state=add");
+            dc.out.redirect(addUrl, "新增");
+        };
+        {@/if}
+        {@if contains("2",data.businessMethodTypes)}
+        //编辑
+        function dc_edit() {
+            //获取ID
+            var ids = dc.getValue("#g_table");
+            if (ids && ids.length == 1) {
+                var addUrl = dc.util.getUrl() + ("/Tabs.html?state=edit&oid=" + ids[0]);
+                dc.out.redirect(addUrl, "编辑");
+            }
+            else {
+                dc.info.alert("有且只能选中一项进行操作");
+            }
+        };
+        {@/if}
+
+        {@if contains("3",data.businessMethodTypes)}
+        //删除
+         function dc_del() {
+            //获取ID
+            var ids = dc.getValue("#g_table");
+            if (ids && ids.length > 0) {
+                dc.info.confirm("您确定要删除所选择的记录吗?",
+                    {
+                        fn: function (res) {
+                            if (res) {
+                                //调用删除
+                                dc.get(moduleUrl + "/delete",
+                                    { oid: ids.join(",") },
+                                    function (data) {
+                                        if (data.success) {
+                                            dc.info.alert("操作成功");
+                                            $('#g_table').datagrid('reload', dc.getModel("form"));
+                                            //清除选择
+                                            $('#g_table').datagrid('clearSelections');
+                                        } else {
+                                            console.error(data.data);
+                                            dc.info.alert("删除失败");
+                                        }
+                                    });
+                            }
+                        }
+                    }
+                );
+            }
+            else {
+                dc.info.alert("至少选中一项进行操作");
+            }
+        };
+        {@/if}
+
+        {@if data.isGenerateImport == "true"}
+        //导出
+        function dc_export() {
+            var model = dc.getModel("form");
+            window.location.href = moduleUrl + "/export?" + $.param(model);
+        };
+        {@/if}
+
+        {@if data.isGenerateExport == "true"}
+        //导入
+        function dc_import() {
+            dc.info.show("待实现");
+        }
+        {@/if}
+    });
+
+</script>

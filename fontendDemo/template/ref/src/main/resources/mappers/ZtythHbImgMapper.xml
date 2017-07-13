@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dcjet.javaBackendDemo.dao.ZtythHbImgMapper" >
+  <resultMap id="BaseResultMap" type="com.dcjet.javaBackendDemo.entity.ZtythHbImgEntity" >
+    <id column="OID" property="oid" jdbcType="VARCHAR" />
+    <result column="HB_NO" property="hbNo" jdbcType="VARCHAR" />
+    <result column="G_NO" property="gNo" jdbcType="VARCHAR" />
+    <result column="CODE_T" property="codeT" jdbcType="VARCHAR" />
+    <result column="G_NAME" property="gName" jdbcType="VARCHAR" />
+    <result column="G_MODEL" property="gModel" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="UNIT_1" property="unit1" jdbcType="VARCHAR" />
+    <result column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR" />
+    <result column="DEC_PRICE" property="decPrice" jdbcType="VARCHAR" />
+    <result column="CURR" property="curr" jdbcType="VARCHAR" />
+    <result column="QTY" property="qty" jdbcType="VARCHAR" />
+    <result column="USE_TYPE" property="useType" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="MODIFY_MARK" property="modifyMark" jdbcType="VARCHAR" />
+    <result column="APPR_AMT" property="apprAmt" jdbcType="VARCHAR" />
+    <result column="DUTY_MODE" property="dutyMode" jdbcType="VARCHAR" />
+    <result column="HEAD_OID" property="headOid" jdbcType="VARCHAR" />
+    <result column="INSERT_TIME" property="insertTime" jdbcType="VARCHAR" />
+    <result column="INSERT_USER" property="insertUser" jdbcType="VARCHAR" />
+    <result column="DBSOURCE" property="dbsource" jdbcType="VARCHAR" />
+    <result column="IMG_CHANGE_OID" property="imgChangeOid" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+ 		OID,
+        HB_NO,
+	    G_NO,
+	    CODE_T,
+	    G_NAME,
+	    G_MODEL,
+	    UNIT,
+	    UNIT_1,
+	    COUNTRY_CODE,
+	    DEC_PRICE,
+	    CURR,
+	    QTY,
+	    USE_TYPE,
+	    NOTE,
+	    MODIFY_MARK,
+	    APPR_AMT,
+	    DUTY_MODE,
+	    HEAD_OID,
+	    INSERT_TIME,
+	    INSERT_USER,
+	    DBSOURCE,
+	    IMG_CHANGE_OID,
+	    UPDATE_TIME,
+	    UPDATE_USER
+  </sql>
+  
+  <sql id="condition">
+	<if test="headOid != null and headOid != ''">
+		and HEAD_OID = #{headOid}
+	</if>
+	<if test="gNo != null and gNo != ''">
+		and G_NO = #{gNo}
+	</if>
+	<if test="useType != null and useType != ''">
+		and USE_TYPE = #{useType}
+	</if>
+	<if test="codeT != null and codeT != ''">
+		and CODE_T = #{codeT}
+	</if>
+	<if test="gName != null and gName != ''">
+		and G_NAME = #{gName}
+	</if>
+	<if test="modifyMark != null and modifyMark != ''">
+		and MODIFY_MARK = #{modifyMark}
+	</if>
+  </sql>
+	
+  <select id="selectBodyListBySearch" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbImgSearch" resultMap="BaseResultMap">
+   	select t.* from (
+    SELECT  <include refid="Base_Column_List" />, ROW_NUMBER () OVER (ORDER BY INSERT_TIME desc) AS RowNumber 
+    from T_ZTYTH_HB_IMG   
+    <where>
+		<include refid="condition"></include>
+	</where>
+    ) t
+    WHERE RowNumber BETWEEN ${rows}*${page}-${rows}+1 AND ${rows}*${page}
+  </select>
+  
+  
+  <!-- 分页统计-->
+  <select id="selectBodyListCountBySearch" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbImgSearch" resultType="int">
+   	SELECT COUNT(1) FROM (
+    SELECT  <include refid="Base_Column_List" /> from T_ZTYTH_HB_IMG   
+    <where>
+		<include refid="condition"></include>
+	</where>
+    ) t 
+  </select>
+  
+  <select id="selectBodyListForExport" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbImgSearch" resultMap="BaseResultMap">
+   	select t.* from (
+    SELECT  <include refid="Base_Column_List" /> 
+    from T_ZTYTH_HB_IMG   
+    <where>
+		<include refid="condition"></include>
+	</where>
+    ) t
+  </select>
+</mapper>

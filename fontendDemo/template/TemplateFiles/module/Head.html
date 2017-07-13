@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/icon.css" rel="stylesheet" />
+    <link type="text/css" href="../../res/css/dc.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../dcUIFramework/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/dc.framework-0.0.1.js"></script>
+    <script type="text/javascript" src="../../dc.pageConfig.js"></script>
+    <title>${data.bigModule} Head</title>
+</head>
+<body>
+    <div class="dc-form-wrapper">
+        <form>
+            <div class="dc-panel">
+                <div class="dc-panel-body">
+                    <div class="dc-data-wrapper">
+                        <table class="dc-dataTable">
+                                <% var temp = 0; %>
+                            {@each data.fields.rows as di, index}
+                                {@if di.isQueryConditionShow == "Y"}
+                                
+                                    {@if temp % data.pageColumnCount == 0}
+                            <tr>   
+                                    {@/if}
+                                <th>${di.FIELDDESC}</th>
+                                <td>$${di|generateHeadControls}</td>
+                                    {@if temp % data.pageColumnCount == data.pageColumnCount -1 }
+                            </tr>   
+                                    {@/if}
+                                    <% temp = temp + 1; %>
+                                {@/if}
+                            {@/each}
+                            {@if temp % data.pageColumnCount >0 }
+                            </tr>
+                            {@/if}
+                        </table>
+                    </div>
+                    <div class="dc-foot-wrapper">
+                        <a id="f_confirm" dcc="button" class="dc-btn dc-btn-ok">确定</a>
+                        <a id="f_cancel" dcc="button" class="dc-btn dc-btn-cancel">返回</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    //统一页面参数区域
+    var moduleUrl = dc.project.backendUrl + "/ZtythHbHead";
+    //控件定义区域
+    dc.config = {
+        page: {
+            //页面code
+            pagecode: "page-head"
+        },
+        //控件配置区域
+        control: {
+             <% var temp1 =0;%>
+                {@each data.fields.rows as di, index}
+                        {@if di.isEditShow == "Y"}
+                            {@if di.controlType == "autocomplete" && di.codeType!="" }
+            {@if temp1>0},{@/if}"d_${di.FIELDDESC|getDcm}": { code: "${d.codeType}" }               
+                            {@/if}
+                            <% temp1 =temp1 + 1;%>
+                        {@/if}
+                {@/each}
+        },
+        //字段验证区域
+        fieldValid: {
+            <% temp1 =0;%>
+                {@each data.fields.rows as di, index}
+                        {@if di.isEditShow == "Y"}
+{@if temp1>0},{@/if}$${di|generateFieldValid}             
+                            <% temp1 =temp1 + 1;%>
+                        {@/if}
+            {@/each}
+        }
+    };
+    $(function () {
+        //初始化所有控件
+        dc.init();
+
+        //事件绑定区域
+        var oid = dc.util.getRequest().oid;
+
+        //初始化页面赋值
+        //dc.setValue("d_compNo", "9999999999");
+
+        if (oid) {
+            dc.post(moduleUrl + "/get", { "oid": oid }, function (data) {
+                if (data && data.success) {
+                    dc.setModel("form", data.data);
+                }
+            });
+        }
+
+        //确认
+        $("#f_confirm").bind("click", function () {
+            var entity = dc.getModel("form");
+            entity.oid = oid;
+
+            //控件验证
+            if ($("form").form("validate")) {
+                //逻辑校验
+
+                //提交
+                dc.post(moduleUrl + "/edit", entity, function (data) {
+                    if (data && data.success) {
+                        dc.info.alert("保存成功",
+                            {
+                                fn: function () {
+                                    if (!oid) {
+                                        oid = data.data;
+                                        //tab操作
+                                        dc.invoke("page-tabs",
+                                            function () {
+                                                if (this.addBodyTab)
+                                                    this.addBodyTab(oid);
+                                            });
+
+                                    } else {
+                                        //更新时，不做特殊处理
+                                    }
+                                }
+                            });
+                    } else {
+                        console.error(data.error);
+                        dc.info.warn("新增失败");
+                    }
+                });
+            }
+        });
+        //返回
+        $("#f_cancel").bind("click", function () {
+            var addUrl = dc.util.getUrl() + ("/Index.html");
+            dc.invoke("page-tabs",
+                function () {
+                    this.dc.out.redirect(addUrl, "${data.bigModule} Index");
+                });
+           
+        });
+    });
+    function dd() {
+        alert(window.location.href);
+    }
+</script>

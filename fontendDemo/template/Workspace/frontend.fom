@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FOM>
+    <!--Index-->
+    <NODE>
+        <SOURCE>module/Index.html</SOURCE>
+        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Index.html</TARGET>
+        <DATA>ddata</DATA>
+    </NODE>
+    <!--Tabs-->
+    <NODE>
+        <SOURCE>module/Tabs.html</SOURCE>
+        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Tabs.html</TARGET>
+        <DATA>ddata</DATA>
+    </NODE>
+    <!--Head-->
+    <NODE>
+        <SOURCE>module/Head.html</SOURCE>
+        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Head.html</TARGET>
+        <DATA>ddata</DATA>
+    </NODE>
+    <!--Body-->
+    <NODE>
+        <SOURCE>module/Body.html</SOURCE>
+        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Body.html</TARGET>
+        <DATA>ddata</DATA>
+    </NODE>
+</FOM>

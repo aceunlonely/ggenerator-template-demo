@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Apollo Frontend框架展示Body</title>
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/icon.css" rel="stylesheet" />
+    <link type="text/css" href="../../res/css/dc.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../dcUIFramework/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/dc.framework-0.0.1.js"></script>
+    <script type="text/javascript" src="../../dc.pageConfig.js"></script>
+</head>
+<body>
+    <div class="dc-form-wrapper">
+        <form>
+            <div class="dc-data-wrapper dc-panel" id="dc-data-wrapper">
+                <div class="dc-panel-body">
+                    <table class="dc-dataTable">
+                        <tr>
+                            <th>序号</th>
+                            <td>
+                                <input id="d_gNo" dcc="intbox" dcm="gNo">
+                            </td>
+                            <th>记录号</th>
+                            <td>
+                                <input id="d_useType" dcc="intbox" dcm="useType">
+                            </td>
+                            <th>商品编码</th>
+                            <td>
+                                <input id="d_codeT" dcc="textbox" dcm="codeT">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>商品名称</th>
+                            <td colspan="3">
+                                <input id="d_gName" dcc="textbox" dcm="gName">
+                            </td>
+                            <th>计量单位</th>
+                            <td>
+                                <input id="d_unit" dcc="autocomplete" dcm="unit">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>规格型号</th>
+                            <td colspan="5">
+                                <input id="d_gModel" dcc="textbox" dcm="gModel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>法定计量单位</th>
+                            <td>
+                                <input id="d_unit1" dcc="autocomplete" dcm="unit1">
+                            </td>
+                            <th>申报数量</th>
+                            <td>
+                                <input id="d_qty" dcc="decimalbox" dcm="qty">
+                            </td>
+                            <th>申报单价</th>
+                            <td>
+                                <input id="d_decPrice" dcc="decimalbox" dcm="decPrice">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>申报总价</th>
+                            <td>
+                                <input id="d_apprAmt" dcc="intbox" dcm="apprAmt">
+                            </td>
+                            <th>币制</th>
+                            <td>
+                                <input id="d_curr" dcc="autocomplete" dcm="curr">
+                            </td>
+                            <th>产销国</th>
+                            <td>
+                                <input id="d_countryCode" dcc="select" dcm="countryCode">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>征免方式 </th>
+                            <td>
+                                <input id="d_dutyMode" dcc="select" dcm="dutyMode">
+                            </td>
+                            <th>申报状态</th>
+                            <td>
+                                <input id="d_applyState" dcc="select" dcm="applyState">
+                            </td>
+                            <th>备注</th>
+                            <td>
+                                <input id="d_note" dcc="textbox" dcm="note">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="dc-panel-footer">
+                    <a id="d_confirm" dcc="button" class="dc-btn dc-btn-ok">确定</a>
+                    <a id="d_cancel" dcc="button" class="dc-btn dc-btn-cancel">取消</a>
+                    <a id="d_hide" dcc="button" class="dc-btn dc-btn-hide">隐藏</a>
+                </div>
+            </div>
+            <div class="dc-search-wrapper dc-panel" id="dc-search-wrapper">
+                <div class="dc-panel-head">
+                    <a id="s_search" dcc="button" class="dc-btn dc-btn-search">查询</a>
+                    <a id="s_searchHidden" dcc="button" class="dc-searchHidden dc-btn dc-btn-hideSearch">隐藏查询</a>
+                </div>
+                <div class="dc-panel-body">
+                    <!-- 查询条件 -->
+                    <table class="dc-searchTable">
+                        <tr>
+                            <th>序号</th>
+                            <td><input id="s_gNo" dcc="textbox" dcm="gNo" /></td>
+                            <th>记录号</th>
+                            <td><input id="s_useType" dcc="textbox" dcm="useType" /></td>
+                            <th>商品编码</th>
+                            <td><input id="s_codeT" dcc="textbox" dcm="codeT" /></td>
+                        </tr>
+                        <tr>
+                            <th>商品名称</th>
+                            <td><input id="s_gName" dcc="textbox" dcm="gName" /></td>
+                            <th>处理标志</th>
+                            <td><input id="s_modifyMark" dcc="select" dcm="modifyMark" /></td>
+                            <th>申报状态</th>
+                            <td><input id="s_applyState" dcc="select" dcm="applyState" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="dc-toolbar-wrapper dc-panel">
+                <div class="dc-panel-body">
+                    <a id="t_add" dcc="button" class="dc-btn dc-btn-add">新增</a>
+                    <a id="t_export" dcc="button" class="dc-btn dc-btn-import">导出</a>
+                    <a id="t_import" dcc="button" class="dc-btn dc-btn-export">导入</a>
+                </div>
+            </div>
+            <div class="dc-grid-wrapper dc-panel">
+                <table id="g_table" dcc="datagrid"></table>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    //统一页面参数区域
+    var moduleUrl = dc.project.backendUrl + "/ZtythHbImg";
+    var headOid = dc.util.getRequest().headOid;
+    dc.config = {
+        page: {
+            //页面code
+            pagecode:"page-body"
+        },
+        control: {
+            "d_decPrice": { precision: 5 },
+            "d_qty": { precision: 5 },
+            "d_apprAmt": { precision: 5 },
+            "g_table": {
+                url: moduleUrl + "/getList",
+                method: "POST",
+                idField: "oid",
+                checkbox: false,
+                queryParams: { "headOid": headOid },
+                columns: [[
+                    {
+                        title: "操作", field: 'defaut_opt', formatter: function (value, row, index) {
+                            var edit = "<a href='javascript:;' onclick=\"btnUpdate_click('" + row.oid + "')\" >编辑</a>";
+                            var del = "<a href='javascript:;' onclick=\"btnDelete_click('" + row.oid + "')\" >删除</a>";
+                            return edit +" \\ "+ del;
+                        }
+                    },
+                    { title: "序号", field: 'gNo' },
+                    { title: "记录号", field: 'useType' },
+                    { title: "商品编码", field: 'codeT', sortable: true },
+                    { title: "商品名称", field: 'gName', sortable: true },
+                    { title: "规格型号", field: 'gModelFormatter' },
+                    { title: "计量单位", field: 'unit', formatter: function (value, row, index) { return Enum.unit[value]; } },
+                    { title: "法定计量单位", field: 'unit1', formatter: function (value, row, index) { return Enum.unit[value]; } },
+                    { title: "申报数量", field: 'qty', sortable: true },
+                    { title: "申报单价", field: 'decPrice', sortable: true },
+                    { title: "申报总价", field: 'apprAmt', sortable: true },
+                    { title: "币制", field: 'curr', formatter: function (value, row, index) { return Enum.Current[value]; } },
+                    { title: "产销国", field: 'countryCode', sortable: true, formatter: function (value, row, index) { return Enum.tradeCountry[value]; } },
+                    { title: "征免方式", field: 'dutyMode', formatter: function (value, row, index) { return Enum.DutyMode[value]; } },
+                    { title: "处理标志", field: 'modifyMark', formatter: function (value, row, index) { return Enum.modifyMark[value]; } },
+                    { title: "申报状态", field: 'applyState', formatter: function (value, row, index) { return Enum.ApplyState[value]; } },
+                    { title: "备注", field: 'note' }
+                ]]
+            },
+            "t_import": { "iconCls": "icon-dc-import" },
+            "t_export": { "iconCls": "icon-dc-export" },
+            "t_add": { "iconCls": "icon-dc-add" },
+            "t_set": { "iconCls": "icon-dc-edit" },
+            "d_unit": { disabled: true, data: dc.getSelectItemList(Enum.unit, "007") },
+            "d_unit1": { disabled: true, data: dc.getSelectItemList(Enum.unit, "001") },
+            "d_curr": { disabled: true, data: dc.getSelectItemList(Enum.Current, "110") },//币制
+            "d_countryCode": { data: dc.getSelectItemList(Enum.tradeCountry) },//产销国
+            "d_dutyMode": { data: dc.getSelectItemList(Enum.DutyMode, "1") },//征免方式
+            "d_applyState": { data: dc.getSelectItemList(Enum.ApplyState) },//申报状态
+            "s_modifyMark": { data: dc.getSelectItemList(Enum.modifyMark) },//处理标志
+            "s_applyState": { data: dc.getSelectItemList(Enum.ApplyState) },//申报状态
+            "s_gNo": { novalidate:true},//查询框中的序号字段不需要验证
+            "s_useType":{novalidate:true},
+            "s_codeT":{novalidate:true},
+            "s_gName":{novalidate:true}
+        },
+        fieldValid: {
+            gNo: { required: true,validType: "length[9]" },
+            useType: { required: true,validType: "length[9]" },
+            codeT: { required: true, validType: "length[10]" },
+            gName: { required: true, validType: "length[50]" },
+            unit: { required: true },
+            gModel: { validType: "length[255]" },
+            unit1: { required: true },
+            qty: { required: true, validType: "number[18,5]" },
+            decPrice: { required: true, validType: "number[18,5]" },
+            apprAmt: { required: true, validType: "number[18,5]" },
+            curr: { required: true },
+            countryCode: { required: true },
+            note: { validType: 'length[50]'}
+        }
+    };
+
+    dcReady(function () {
+        //初始化所有控件
+        dc.init();
+        $(".dc-data-wrapper").hide();
+        //事件绑定区域
+        //查询
+        $("#s_search").bind("click", reloadDatagrid);
+
+        //新增
+        $("#t_add").click(function () {
+            editOid = null;
+            clearEditArea();
+            $('.dc-data-wrapper').show();
+            dc.autoHeight();
+        });
+
+        //隐藏
+        $("#d_hide").click(closeEditArea);
+
+        //取消
+        $("#d_cancel").click(closeEditArea);
+
+        //确认保存
+        $("#d_confirm").click(function () {
+            var entity = dc.getModel("#dc-data-wrapper");
+            entity.oid = editOid;
+            entity.headOid = headOid;
+            //控件验证
+            if ($(".dc-dataTable").form("validate")) {
+                //逻辑校验
+
+                //提交
+                dc.post(moduleUrl + "/edit", entity, function (data) {
+                    if (data && data.success) {
+                        dc.info.alert("保存成功", {
+                            fn: function () {
+                                closeEditArea();
+                                reloadDatagrid();
+                            }
+                        });
+                    }
+                    else {
+                        console.error(data.data);
+                        dc.info.alert("保存失败");
+                    }
+                });
+            }
+        });
+
+        //导出
+        $("#t_export").bind("click", function () {
+            dc.info.show("待实现");
+        });
+
+        //导入
+        $("#t_import").bind("click", function () {
+            dc.info.show("待实现");
+        });
+
+    });
+
+    //主id
+    var editOid = null;
+
+    //清除编辑区域
+    var clearEditArea = function () {
+        dc.setModel("#dc-data-wrapper", null);
+        dc.setValue("d_unit", "007");
+        dc.setValue("d_unit1", "001");
+        dc.setValue("d_curr", "110");
+    };
+
+    //关闭编辑区域
+    var closeEditArea = function () {
+        clearEditArea();
+        $(".dc-data-wrapper").hide();
+        editOid = null;
+        dc.autoHeight();
+    };
+
+    //重载表格数据
+    var reloadDatagrid = function () {
+        var search = { "headOid": headOid };
+        $('#g_table').datagrid('reload', dc.getModel("#dc-search-wrapper", search));
+    }
+
+    //编辑
+    var btnUpdate_click = function (oid) {
+        clearEditArea();
+        dc.post(moduleUrl + "/get", { "oid": oid, "headOid": headOid }, function (data) {
+            if (data && data.success) {
+                var model = data.data;
+                dc.setModel("#dc-data-wrapper", model);
+                editOid = model.oid;
+            }
+        });
+        $('#dc-data-wrapper').show();
+    };
+
+    //删除
+    var btnDelete_click = function (oid) {
+        dc.info.confirm("您确定要删除所选择的记录吗?", {
+            title: "是否删除",
+            fn: function (res) {
+                if (res) {
+                    //调用删除
+                    dc.post(moduleUrl + "/delete", { oid: oid, "headOid": headOid }, function (data) {
+                        if (data.success) {
+                            dc.info.alert("操作成功");
+                            closeEditArea();
+                            reloadDatagrid();
+                        }
+                        else {
+                            console.error(data.data);
+                            dc.info.alert("删除失败");
+                        }
+                    });
+                }
+            }
+        });
+    };
+</script>

@@ -1,0 +1,194 @@
+﻿<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=EDGE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/icon.css" rel="stylesheet" />
+    <link type="text/css" href="../../res/css/dc.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../dcUIFramework/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/dc.framework-0.0.1.js"></script>
+    <script type="text/javascript" src="../../dc.pageConfig.js"></script>
+    <title>Apollo Frontend框架展示Index</title>
+</head>
+
+<body>
+    <div class="dc-form-wrapper">
+        <form>
+            <div class="dc-search-wrapper dc-panel">
+                <div class="dc-panel-head">
+                    <span class="dc-sitePath">当前位置： 直通一体化 / 电子化手册 / 手册设立变更 </span>
+                    <a id="s_search" dcc="button" dpm="page-index-search" class="dc-btn dc-btn-search">查询</a>
+                    <a id="s_searchHidden" dcc="button" class="dc-searchHidden dc-btn dc-btn-hideSearch">隐藏查询</a>
+                </div>
+                <div class="dc-panel-body">
+                    <!-- 查询条件 -->
+                    <table class="dc-searchTable">
+                        <tr>
+                            <th>企业内部编号</th>
+                            <td><input id="s_copEmsNo" dcc="textbox" dcm="copEmsNo" /></td>
+                            <th>手册编号</th>
+                            <td><input id="s_hbNo" dcc="textbox" dcm="hbNo" /></td>
+                            <th>流水号</th>
+                            <td><input id="s_serialNo" dcc="textbox" dcm="serialNo" /></td>
+                        </tr>
+                        <tr>
+                            <th>有效期</th>
+                            <td>
+                                <input id="s_expiryDateBegin" dcc="datebox" dcm="expiryDateBegin" />
+                                ~
+                                <input id="s_expiryDateEnd" dcc="datebox" dcm="expiryDateEnd" />
+                            </td>
+                            <th>申报状态</th>
+                            <td><input id="s_state" dcc="select" dcm="state" /></td>
+                            <th>风险担保金状态</th>
+                            <td><input id="s_riskState" dcc="select" dcm="riskState" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="dc-toolbar-wrapper dc-panel">
+                <div class="dc-panel-body">
+                    <a id="t_add" dcc="button" dpm="page-index-add" class="dc-btn dc-btn-add">新增</a>
+                    <a id="t_edit" dcc="button" dpm="page-index-edit" class="dc-btn dc-btn-edit">修改</a>
+                    <a id="t_del" dcc="button" dpm="page-index-delete" class="dc-btn dc-btn-del">删除</a>
+                    <a id="t_import" dcc="button" dpm="page-index-import" class="dc-btn dc-btn-import">导入</a>
+                    <a id="t_export" dcc="button" dpm="page-index-export" class="dc-btn dc-btn-export">导出</a>
+                </div>
+            </div>
+            <div class="dc-grid-wrapper dc-panel">
+                <table id="g_table" dcc="datagrid"></table>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    dcReady(function () {
+        //统一页面参数区域
+        var moduleUrl = dc.project.backendUrl + "/ZtythHbHead";
+
+        //控件定义区域
+        dc.config = {
+            page: {
+                pagecode: "page-index"
+            },
+            //字段验证区域
+            fieldValid: {
+                "copEmsNo": { validType: ["length[20]"] },
+                "hbNo": { validType: ["length[12]"] },
+                "serialNo": { validType: ["length[20]"] }
+            },
+            //控件配置区域
+            control:
+            {
+                "s_state": { valueField: "value", textField: "text", data: dc.getSelectItemList(Enum.state, null, true) },
+                "s_riskState": {
+                    valueField: "value", textField: "text", data: dc.getSelectItemList(Enum.riskState, null, true)
+                },
+                "g_table": {
+                    url: moduleUrl + "/getList",
+                    idField: "oid",
+                    method: "POST",
+                    columns: [[
+                        { title: "企业内部编号", field: 'copEmsNo' },
+                        { title: "手册编号", field: 'hbNo' },
+                        { title: "流水号", field: 'serialNo' },
+                        { title: "有效期", field: 'expiryDate', formatter: dc.out.dateFormatter },
+                        { title: "录入日期", field: 'insertTime', formatter: dc.out.dateFormatter },
+                        { title: "申报状态", field: 'state', formatter: function (value, row, index) { return Enum.state[value]; } },
+                        { title: "风险担保金状态", field: 'riskState', formatter: function (value, row, index) { return Enum.riskState[value]; } },
+                        { title: "申报日期", field: 'sendTime', formatter: dc.out.dateFormatter },
+                        { title: "结案日期", field: 'endTime', formatter: dc.out.dateFormatter }
+                    ]]
+                },
+                "s_search":{onClick:dc_search},
+                "t_add": { "iconCls": "icon-dc-add" ,onClick:dc_add},
+                "t_edit": { "iconCls": "icon-dc-edit",onClick:dc_edit },
+                "t_del": { "iconCls": "icon-dc-remove",onClick:dc_del },
+                "t_import": { "iconCls": "icon-dc-import",onClick:dc_import },
+                "t_export": { "iconCls": "icon-dc-export",onClick:dc_export },
+                "s_copEmsNo": { width: 337 },
+                "s_expiryDateBegin": { width: 160 },
+                "s_expiryDateEnd": { width: 160 }
+            }
+        };
+        //初始化所有控件
+        dc.init();
+
+        //事件区域
+        //查询
+        function dc_search() {
+            $('#g_table').datagrid('reload', dc.getModel("form"));
+        };
+        //新增
+        function dc_add() {
+            var addUrl = dc.util.getUrl() + ("/Tabs.html?state=add");
+            dc.out.redirect(addUrl, "新增");
+        };
+        //编辑
+        function dc_edit() {
+            //获取ID
+            var ids = dc.getValue("#g_table");
+            if (ids && ids.length == 1) {
+                var addUrl = dc.util.getUrl() + ("/Tabs.html?state=edit&oid=" + ids[0]);
+                dc.out.redirect(addUrl, "编辑");
+            }
+            else {
+                dc.info.alert("有且只能选中一项进行操作");
+            }
+
+        };
+
+        //删除
+         function dc_del() {
+            //获取ID
+            var ids = dc.getValue("#g_table");
+            if (ids && ids.length > 0) {
+                dc.info.confirm("您确定要删除所选择的记录吗?",
+                    {
+                        fn: function (res) {
+                            if (res) {
+                                //调用删除
+                                dc.get(moduleUrl + "/delete",
+                                    { oid: ids.join(",") },
+                                    function (data) {
+                                        if (data.success) {
+                                            dc.info.alert("操作成功");
+                                            $('#g_table').datagrid('reload', dc.getModel("form"));
+                                            //清除选择
+                                            $('#g_table').datagrid('clearSelections');
+                                        } else {
+                                            console.error(data.data);
+                                            dc.info.alert("删除失败");
+                                        }
+                                    });
+                            }
+                        }
+                    }
+                );
+            }
+            else {
+                dc.info.alert("至少选中一项进行操作");
+            }
+        };
+
+        //导出
+        function dc_export() {
+            var model = dc.getModel("form");
+            window.location.href = moduleUrl + "/export?" + $.param(model);
+        };
+
+        //导入
+        function dc_import() {
+            dc.info.show("待实现");
+        }
+
+
+    });
+
+</script>

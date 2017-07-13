@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/icon.css" rel="stylesheet" />
+    <link type="text/css" href="../../res/css/dc.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../dcUIFramework/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/dc.framework-0.0.1.js"></script>
+    <script type="text/javascript" src="../../dc.pageConfig.js"></script>
+    <title>Apollo Frontend框架展示Head</title>
+</head>
+<body>
+    <div class="dc-form-wrapper">
+        <form>
+            <div class="dc-panel">
+                <div class="dc-panel-body">
+                    <div class="dc-data-wrapper">
+                        <table class="dc-dataTable">
+                            <tr>
+                                <th> 企业编码</th>
+                                <td>
+                                    <input id="d_compNo" dcc="textbox" dcm="compNo">
+                                </td>
+                                <th>流水号</th>
+                                <td>
+                                    <input id="d_serialNo" dcc="textbox" dcm="serialNo">
+                                </td>
+                                <th>企业内部编号</th>
+                                <td>
+                                    <input id="d_copEmsNo" dcc="textbox" dcm="copEmsNo">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>手册编号</th>
+                                <td>
+                                    <input id="d_hbNo" dcc="textbox" dcm="hbNo">
+                                </td>
+                                <th>备案资料库编号</th>
+                                <td>
+                                    <input id="d_hbBaseNo" dcc="autocomplete" dcm="hbBaseNo">
+                                </td>
+                                <th>主管海关</th>
+                                <td>
+                                    <input id="d_masterCustoms" dcc="autocomplete" dcm="masterCustoms">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>经营单位编码</th>
+                                <td>
+                                    <input id="d_tradeCode" dcc="textbox" dcm="tradeCode">
+                                </td>
+                                <th>经营单位名称</th>
+                                <td>
+                                    <input id="d_tradeName" dcc="textbox" dcm="tradeName">
+                                </td>
+                                <th>经营企业管理类别</th>
+                                <td>
+                                    <input id="d_tradeAeotype" dcc="autocomplete" dcm="tradeAeotype">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>加工单位编码</th>
+                                <td>
+                                    <input id="d_ownerCode" dcc="textbox" dcm="ownerCode">
+                                </td>
+                                <th>加工单位名称</th>
+                                <td>
+                                    <input id="d_ownerName" dcc="textbox" dcm="ownerName">
+                                </td>
+                                <th>加工企业管理类别</th>
+                                <td>
+                                    <input id="d_ownerAeotype" dcc="autocomplete" dcm="ownerAeotype">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>企业联系人</th>
+                                <td>
+                                    <input id="d_contactPerson" dcc="textbox" dcm="contactPerson">
+                                </td>
+                                <th>联系电话</th>
+                                <td>
+                                    <input id="d_contactPhone" dcc="textbox" dcm="contactPhone">
+                                </td>
+                                <th>厂房情况</th>
+                                <td>
+                                    <input id="d_plantConditio" dcc="m-checkbox" dcm="plantConditio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>处理标志</th>
+                                <td>
+                                    <input id="d_modifyMark" dcc="select" dcm="modifyMark">
+                                </td>
+                                <th>是否首办</th>
+                                <td>
+                                    <input id="d_isFirst" dcc="radio" dcm="isFirst">
+                                </td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>经营单位地址</th>
+                                <td colspan="5">
+                                    <input id="d_tradeAddress" dcc="textbox" dcm="tradeAddress">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>加工单位地址</th>
+                                <td colspan="5">
+                                    <input id="d_ownerAddress" dcc="textbox" dcm="ownerAddress">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>主管外经部门</th>
+                                <td>
+                                    <input id="d_masterFtc" dcc="autocomplete" dcm="masterFtc">
+                                </td>
+                                <th>台账银行</th>
+                                <td>
+                                    <input id="d_accountBank" dcc="autocomplete" dcm="accountBank">
+                                </td>
+                                <th>管理对象</th>
+                                <td>
+                                    <input id="d_manageObject" dcc="autocomplete" dcm="manageObject">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>收货地区</th>
+                                <td>
+                                    <input id="d_receiveArea" dcc="autocomplete" dcm="receiveArea">
+                                </td>
+                                <th>经办人</th>
+                                <td>
+                                    <input id="d_operator" dcc="textbox" dcm="operator">
+                                </td>
+                                <th>电话</th>
+                                <td>
+                                    <input id="d_phone" dcc="textbox" dcm="phone">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>外商公司名称</th>
+                                <td>
+                                    <input id="d_foreignCoName" dcc="textbox" dcm="foreignCoName">
+                                </td>
+                                <th>未结案手册数</th>
+                                <td>
+                                    <input id="d_useHbCount" dcc="intbox" dcm="useHbCount">
+                                </td>
+                                <th>单耗申报环节</th>
+                                <td>
+                                    <input id="d_equipMode" dcc="radio" dcm="equipMode">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>手册办理类型</th>
+                                <td>
+                                    <input id="d_hbType" dcc="m-checkbox" dcm="hbType">
+                                </td>
+                                <th>贸易方式</th>
+                                <td>
+                                    <input id="d_tradeMode" dcc="radio" dcm="tradeMode">
+                                </td>
+                                <th>征免性质</th>
+                                <td>
+                                    <input id="d_cutMode" dcc="autocomplete" dcm="cutMode">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>贸易国别</th>
+                                <td>
+                                    <input id="d_tradeCountry" dcc="autocomplete" dcm="tradeCountry">
+                                </td>
+                                <th>加工种类</th>
+                                <td>
+                                    <input id="d_produceType" dcc="autocomplete" dcm="produceType">
+                                </td>
+                                <th>内销比例</th>
+                                <td>
+                                    <input id="d_inRatio" dcc="decimalbox" dcm="inRatio">%
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>批准文号</th>
+                                <td>
+                                    <input id="d_emsApprNo" dcc="textbox" dcm="emsApprNo">
+                                </td>
+                                <th>审批机关</th>
+                                <td>
+                                    <input id="d_approveOrg" dcc="textbox" dcm="approveOrg">
+                                </td>
+                                <th>协议号</th>
+                                <td>
+                                    <input id="d_agreeNo" dcc="textbox" dcm="agreeNo">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>进口合同号</th>
+                                <td>
+                                    <input id="d_contrIn" dcc="textbox" dcm="contrIn">
+                                </td>
+                                <th>进口总值</th>
+                                <td>
+                                    <input id="d_apprImgAmt" dcc="decimalbox" dcm="apprImgAmt">
+                                </td>
+                                <th>进口币制</th>
+                                <td>
+                                    <input id="d_imCurr" dcc="autocomplete" dcm="imCurr">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>出口合同号</th>
+                                <td>
+                                    <input id="d_contrOut" dcc="textbox" dcm="contrOut">
+                                </td>
+                                <th>出口总值</th>
+                                <td>
+                                    <input id="d_apprExgAmt" dcc="decimalbox" dcm="apprExgAmt">
+                                </td>
+                                <th>出口币制</th>
+                                <td>
+                                    <input id="d_exCurr" dcc="autocomplete" dcm="exCurr">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>进口期限</th>
+                                <td>
+                                    <input id="d_importPeriod" dcc="datebox" dcm="importPeriod">
+                                </td>
+                                <th>有效日期</th>
+                                <td>
+                                    <input id="d_expiryDate" dcc="datebox" dcm="expiryDate">
+                                </td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>备注</th>
+                                <td colspan="5">
+                                    <input id="d_note" dcc="textbox" dcm="note">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dc-foot-wrapper">
+                        <a id="f_confirm" dcc="button" class="dc-btn dc-btn-ok">确定</a>
+                        <a id="f_cancel" dcc="button" class="dc-btn dc-btn-cancel">返回</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    //统一页面参数区域
+    var moduleUrl = dc.project.backendUrl + "/ZtythHbHead";
+    //控件定义区域
+    dc.config = {
+        page: {
+            //页面code
+            pagecode: "page-head"
+        },
+        //控件配置区域
+        control: {
+            "d_hbBaseNo": { data: dc.getSelectItemList(Enum.hbBaseNo) },
+            "d_masterCustoms": { data: dc.getSelectItemList(Enum.Customs) },
+            "d_tradeAeotype": { data: dc.getSelectItemList(Enum.Aeotype, "1") },
+            "d_ownerAeotype": { data: dc.getSelectItemList(Enum.Aeotype, "2") },
+            "d_plantConditio": { data: dc.getSelectItemList(Enum.plantCondition) },
+            "d_modifyMark": { data: dc.getSelectItemList(Enum.modifyMark, "1"), disabled: true },
+            "d_isFirst": { data: dc.getSelectItemList(Enum.YesNo, "1") },
+            "d_masterFtc": { data: dc.getSelectItemList(Enum.masterFtc) },
+            "d_accountBank": { data: dc.getSelectItemList(Enum.accountBank, "1") },
+            "d_manageObject": { data: dc.getSelectItemList(Enum.manageObject, "0"), disabled: true },
+            "d_receiveArea": { data: dc.getSelectItemList(Enum.receiveArea) },
+            "d_equipMode": { data: dc.getSelectItemList(Enum.equipMode) },
+            "d_hbType": { data: dc.getSelectItemList(Enum.hbType) },
+            "d_tradeMode": { data: dc.getSelectItemList(Enum.tradeMode) },
+            "d_cutMode": { data: dc.getSelectItemList(Enum.cutMode) },
+            "d_produceType": { data: dc.getSelectItemList(Enum.produceType) },
+            "d_imCurr": { data: dc.getSelectItemList(Enum.Current) },
+            "d_exCurr": { data: dc.getSelectItemList(Enum.Current) },
+            "d_tradeCountry": { data: dc.getSelectItemList(Enum.tradeCountry) },
+            "d_serialNo": { disabled: true },
+            "d_hbNo": { disabled: true },
+            "d_tradeName": { disabled: true },
+            "d_ownerName": { disabled: true },
+            "d_emsApprNo": { disabled: true },
+            "d_apprImgAmt": { disabled: true },
+            "d_apprExgAmt": { disabled: true }
+        },
+        //字段验证区域
+        fieldValid: {
+            "compNo": { name: "企业编码", validType: ["length[10]"], required: true },
+            "serialNo": { name: "流水号", validType: ["length[20]"] },
+            "copEmsNo": { name: "企业内部编号", validType: ["length[20]"], required: true },
+            "hbNo": { name: "手册编号", validType: ["length[12]"] },
+            "hbBaseNo": { name: "备案资料库编号", validType: ["length[12]"], required: true },
+            "masterCustoms": { name: "主管海关", required: true },
+            "tradeCode": { name: "经营单位编码", validType: ["length[10]"], required: true },
+            "tradeName": { name: "经营单位名称", validType: ["length[100]"], required: false },
+            "tradeAeotype": { name: "经营企业管理类别", required: true },
+            "ownerCode": { name: "加工单位编码", validType: ["length[10]"], required: true },
+            "ownerName": { name: "加工单位名称", validType: ["length[100]"], required: true },
+            "ownerAeotype": { name: "加工企业管理类别", required: true },
+            "contactPerson": { name: "企业联系人", validType: ["length[50]"], required: true },
+            "contactPhone": { name: "联系电话", validType: ["length[50]"], required: true },
+            "plantConditio": { name: "厂房情况", required: true },
+            "modifyMark": { name: "处理标志", validType: ["length[50]"], required: true },
+            "isFirst": { name: "是否首办", required: true },
+            "tradeAddress": { name: "经营单位地址", validType: ["length[100]"], required: true },
+            "ownerAddress": { name: "加工单位地址", validType: ["length[100]"], required: true },
+            "masterFtc": { name: "主管外经部门", required: true },
+            "accountBank": { name: "台账银行", required: true },
+            "manageObject": { name: "管理对象", validType: ["length[50]"], required: true },
+            "receiveArea": { name: "收货地区", required: true },
+            "operator": { name: "经办人", validType: ["length[20]"], required: true },
+            "phone": { name: "电话", validType: ["length[50]"], required: true },
+            "foreignCoName": { name: "外商公司名称", validType: ["length[50]"], required: false },
+            "useHbCount": { name: "未结案手册数", validType: ["length[10]"], required: true },
+            "equipMode": { name: "单耗申报环节", required: true },
+            "hbType": { name: "手册办理类型", validType: ["length[10]"], required: true },
+            "tradeMode": { name: "贸易方式", required: true },
+            "cutMode": { name: "征免性质", required: true },
+            "tradeCountry": { name: "贸易国别" },
+            "produceType": { name: "加工种类", required: true },
+            "inRatio": { name: "内销比例", validType: "number[3,5]" },
+            "emsApprNo": { name: "批准文号", validType: ["length[100]"], required: true },
+            "approveOrg": { name: "审批机关", validType: ["length[100]"] },
+            "agreeNo": { name: "协议号", validType: ["length[32]"] },
+            "contrIn": { name: "进口合同号", validType: ["length[20]"], required: true },
+            "apprImgAmt": { name: "进口总值", validType: "number[13,5]" },
+            "imCurr": { name: "进口币制", required: true },
+            "contrOut": { name: "出口合同号", validType: ["length[20]"], required: true },
+            "apprExgAmt": { name: "出口总值", validType: "number[13,5]" },
+            "exCurr": { name: "出口币制", required: true },
+            "importPeriod": { name: "进口期限", validType: 'date' },
+            "expiryDate": { name: "有效日期", required: true, validType: 'date' },
+            "note": { name: "备注", validType: ["length[255]"] }
+        }
+    };
+    $(function () {
+        //初始化所有控件
+        dc.init();
+
+        //事件绑定区域
+        var oid = dc.util.getRequest().oid;
+
+        //初始化页面赋值
+        dc.setValue("d_compNo", "9999999999");
+        dc.setValue("d_ownerCode", "9999999999");
+        dc.setValue("d_tradeName", "神州数码捷通科技有限公司");
+        dc.setValue("d_ownerName", "神州数码捷通科技有限公司");
+        dc.setValue("d_tradeAddress", "苏州神州数码捷通科技有限公司");
+        dc.setValue("d_ownerAddress", "苏州神州数码捷通科技有限公司");
+        dc.setValue("d_foreignCoName", "苏州神州数码捷通科技有限公司");
+        dc.setValue("d_emsApprNo", "11111111");
+
+        if (oid) {
+            dc.post(moduleUrl + "/get", { "oid": oid }, function (data) {
+                if (data && data.success) {
+                    dc.setModel("form", data.data);
+                }
+            });
+        }
+
+        //确认
+        $("#f_confirm").bind("click", function () {
+            var entity = dc.getModel("form");
+            entity.oid = oid;
+            entity.insertUser = "lxy";
+            //控件验证
+            if ($("form").form("validate")) {
+                //逻辑校验
+
+                //提交
+                dc.post(moduleUrl + "/edit", entity, function (data) {
+                    if (data && data.success) {
+                        dc.info.alert("保存成功",
+                            {
+                                fn: function () {
+                                    if (!oid) {
+                                        oid = data.data;
+                                        //tab操作
+                                        dc.invoke("page-tabs",
+                                            function () {
+                                                if (this.addBodyTab)
+                                                    this.addBodyTab(oid);
+                                            });
+
+                                    } else {
+                                        //更新时，不做特殊处理
+                                    }
+                                }
+                            });
+                    } else {
+                        console.error(data.error);
+                        dc.info.warn("新增失败");
+                    }
+                });
+            }
+        });
+        //返回
+        $("#f_cancel").bind("click", function () {
+            var addUrl = dc.util.getUrl() + ("/Index.html");
+            dc.invoke("page-tabs",
+                function () {
+                    this.dc.out.redirect(addUrl, "首页Demo");
+                });
+           
+        });
+    });
+    function dd() {
+        alert(window.location.href);
+    }
+</script>
