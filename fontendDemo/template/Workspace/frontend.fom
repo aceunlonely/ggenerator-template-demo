@@ -18,10 +18,12 @@
         <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Head.html</TARGET>
         <DATA>ddata</DATA>
     </NODE>
-    <!--Body-->
+    <!--Body typeof(ddata.body)!="undefined"-->
+    {@if ddata.body }
     <NODE>
         <SOURCE>module/Body.html</SOURCE>
         <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Body.html</TARGET>
-        <DATA>ddata</DATA>
+        <DATA>ddata.body</DATA>
     </NODE>
+    {@/if}
 </FOM>

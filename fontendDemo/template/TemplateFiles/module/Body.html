@@ -18,78 +18,24 @@
             <div class="dc-data-wrapper dc-panel" id="dc-data-wrapper">
                 <div class="dc-panel-body">
                     <table class="dc-dataTable">
-                        <tr>
-                            <th>序号</th>
-                            <td>
-                                <input id="d_gNo" dcc="intbox" dcm="gNo">
-                            </td>
-                            <th>记录号</th>
-                            <td>
-                                <input id="d_useType" dcc="intbox" dcm="useType">
-                            </td>
-                            <th>商品编码</th>
-                            <td>
-                                <input id="d_codeT" dcc="textbox" dcm="codeT">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>商品名称</th>
-                            <td colspan="3">
-                                <input id="d_gName" dcc="textbox" dcm="gName">
-                            </td>
-                            <th>计量单位</th>
-                            <td>
-                                <input id="d_unit" dcc="autocomplete" dcm="unit">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>规格型号</th>
-                            <td colspan="5">
-                                <input id="d_gModel" dcc="textbox" dcm="gModel">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>法定计量单位</th>
-                            <td>
-                                <input id="d_unit1" dcc="autocomplete" dcm="unit1">
-                            </td>
-                            <th>申报数量</th>
-                            <td>
-                                <input id="d_qty" dcc="decimalbox" dcm="qty">
-                            </td>
-                            <th>申报单价</th>
-                            <td>
-                                <input id="d_decPrice" dcc="decimalbox" dcm="decPrice">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>申报总价</th>
-                            <td>
-                                <input id="d_apprAmt" dcc="intbox" dcm="apprAmt">
-                            </td>
-                            <th>币制</th>
-                            <td>
-                                <input id="d_curr" dcc="autocomplete" dcm="curr">
-                            </td>
-                            <th>产销国</th>
-                            <td>
-                                <input id="d_countryCode" dcc="select" dcm="countryCode">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>征免方式 </th>
-                            <td>
-                                <input id="d_dutyMode" dcc="select" dcm="dutyMode">
-                            </td>
-                            <th>申报状态</th>
-                            <td>
-                                <input id="d_applyState" dcc="select" dcm="applyState">
-                            </td>
-                            <th>备注</th>
-                            <td>
-                                <input id="d_note" dcc="textbox" dcm="note">
-                            </td>
-                        </tr>
+                         <% var temp = 0; %>
+                            {@each data.fields.rows as di, index}
+                                {@if di.isEditShow == "Y"}
+                                
+                                    {@if temp % data.pageColumnCount == 0}
+                            <tr>   
+                                    {@/if}
+                                <th>${di.FIELDDESC}</th>
+                                <td>$${di|generateHeadControls}</td>
+                                    {@if temp % data.pageColumnCount == data.pageColumnCount -1 }
+                            </tr>   
+                                    {@/if}
+                                    <% temp = temp + 1; %>
+                                {@/if}
+                            {@/each}
+                            {@if temp % data.pageColumnCount >0 }
+                            </tr>
+                            {@/if}
                     </table>
                 </div>
                 <div class="dc-panel-footer">
@@ -106,30 +52,36 @@
                 <div class="dc-panel-body">
                     <!-- 查询条件 -->
                     <table class="dc-searchTable">
-                        <tr>
-                            <th>序号</th>
-                            <td><input id="s_gNo" dcc="textbox" dcm="gNo" /></td>
-                            <th>记录号</th>
-                            <td><input id="s_useType" dcc="textbox" dcm="useType" /></td>
-                            <th>商品编码</th>
-                            <td><input id="s_codeT" dcc="textbox" dcm="codeT" /></td>
+                        <% var temp = 0; %>
+                        {@each data.fields.rows as di, index}
+                            {@if di.isQueryConditionShow == "Y"}
+                            
+                                {@if temp % data.pageColumnCount == 0}
+                        <tr>   
+                                {@/if}
+                            <th>${di.FIELDDESC}</th>
+                            <td>$${di|generateIndexControls}</td>
+                                {@if temp % data.pageColumnCount == data.pageColumnCount -1 }
+                        </tr>   
+                                {@/if}
+                                <% temp = temp + 1; %>
+                            {@/if}
+                        {@/each}
+                        {@if temp % data.pageColumnCount >0 }
                         </tr>
-                        <tr>
-                            <th>商品名称</th>
-                            <td><input id="s_gName" dcc="textbox" dcm="gName" /></td>
-                            <th>处理标志</th>
-                            <td><input id="s_modifyMark" dcc="select" dcm="modifyMark" /></td>
-                            <th>申报状态</th>
-                            <td><input id="s_applyState" dcc="select" dcm="applyState" /></td>
-                        </tr>
+                        {@/if}
                     </table>
                 </div>
             </div>
             <div class="dc-toolbar-wrapper dc-panel">
                 <div class="dc-panel-body">
                     <a id="t_add" dcc="button" class="dc-btn dc-btn-add">新增</a>
-                    <a id="t_export" dcc="button" class="dc-btn dc-btn-import">导出</a>
+                    {@if data.isGenerateImport == "true"}
                     <a id="t_import" dcc="button" class="dc-btn dc-btn-export">导入</a>
+                    {@/if}
+                    {@if data.isGenerateExport == "true"}
+                    <a id="t_export" dcc="button" class="dc-btn dc-btn-import">导出</a>
+                    {@/if}
                 </div>
             </div>
             <div class="dc-grid-wrapper dc-panel">
@@ -141,7 +93,7 @@
 </html>
 <script type="text/javascript">
     //统一页面参数区域
-    var moduleUrl = dc.project.backendUrl + "/ZtythHbImg";
+    var moduleUrl = dc.project.backendUrl + "/${data.moduleName}";
     var headOid = dc.util.getRequest().headOid;
     dc.config = {
         page: {
@@ -149,9 +101,30 @@
             pagecode:"page-body"
         },
         control: {
-            "d_decPrice": { precision: 5 },
-            "d_qty": { precision: 5 },
-            "d_apprAmt": { precision: 5 },
+            {@each data.fields.rows as di, index}
+                        {@if di.isQueryConditionShow == "Y"}
+                            {@if di.controlType == "autocomplete" && di.codeType!="" }
+            "s_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" , novalidate:true },   
+                            {@else}
+            "s_${di.FIELDNAME|getDcm}": { novalidate:true },                             
+                            {@/if}
+                        {@/if}
+            {@/each}
+            {@each data.fields.rows as di, index}
+                        {@if di.isEditShow == "Y"}
+                            {@if di.controlType == "autocomplete" && di.codeType!="" }
+            "d_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" },              
+                            {@/if}
+                        {@/if}
+            {@/each}
+            {@if data.isGenerateImport == "true"}
+            "t_import": { "iconCls": "icon-dc-import" },
+            {@/if}
+            {@if data.isGenerateExport == "true"}
+            "t_export": { "iconCls": "icon-dc-export" },
+            {@/if}
+            "t_add": { "iconCls": "icon-dc-add" },
+            "t_set": { "iconCls": "icon-dc-edit" },
             "g_table": {
                 url: moduleUrl + "/getList",
                 method: "POST",
@@ -166,55 +139,28 @@
                             return edit +" \\ "+ del;
                         }
                     },
-                    { title: "序号", field: 'gNo' },
-                    { title: "记录号", field: 'useType' },
-                    { title: "商品编码", field: 'codeT', sortable: true },
-                    { title: "商品名称", field: 'gName', sortable: true },
-                    { title: "规格型号", field: 'gModelFormatter' },
-                    { title: "计量单位", field: 'unit', formatter: function (value, row, index) { return Enum.unit[value]; } },
-                    { title: "法定计量单位", field: 'unit1', formatter: function (value, row, index) { return Enum.unit[value]; } },
-                    { title: "申报数量", field: 'qty', sortable: true },
-                    { title: "申报单价", field: 'decPrice', sortable: true },
-                    { title: "申报总价", field: 'apprAmt', sortable: true },
-                    { title: "币制", field: 'curr', formatter: function (value, row, index) { return Enum.Current[value]; } },
-                    { title: "产销国", field: 'countryCode', sortable: true, formatter: function (value, row, index) { return Enum.tradeCountry[value]; } },
-                    { title: "征免方式", field: 'dutyMode', formatter: function (value, row, index) { return Enum.DutyMode[value]; } },
-                    { title: "处理标志", field: 'modifyMark', formatter: function (value, row, index) { return Enum.modifyMark[value]; } },
-                    { title: "申报状态", field: 'applyState', formatter: function (value, row, index) { return Enum.ApplyState[value]; } },
-                    { title: "备注", field: 'note' }
+                    <% var temp1 =0;%>
+                {@each data.fields.rows as di, index}
+                        {@if di.isTableShow == "Y"}
+                            {@if di.DBTYPE == "datetime"}
+                    {@if temp1>0},{@/if}{ title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}', formatter: dc.out.dateFormatter }
+                            {@else}
+                    {@if temp1>0},{@/if}{ title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}' }
+                            {@/if}
+                            <% temp1 =temp1 + 1;%>
+                        {@/if}
+                {@/each}
                 ]]
-            },
-            "t_import": { "iconCls": "icon-dc-import" },
-            "t_export": { "iconCls": "icon-dc-export" },
-            "t_add": { "iconCls": "icon-dc-add" },
-            "t_set": { "iconCls": "icon-dc-edit" },
-            "d_unit": { disabled: true, data: dc.getSelectItemList(Enum.unit, "007") },
-            "d_unit1": { disabled: true, data: dc.getSelectItemList(Enum.unit, "001") },
-            "d_curr": { disabled: true, data: dc.getSelectItemList(Enum.Current, "110") },//币制
-            "d_countryCode": { data: dc.getSelectItemList(Enum.tradeCountry) },//产销国
-            "d_dutyMode": { data: dc.getSelectItemList(Enum.DutyMode, "1") },//征免方式
-            "d_applyState": { data: dc.getSelectItemList(Enum.ApplyState) },//申报状态
-            "s_modifyMark": { data: dc.getSelectItemList(Enum.modifyMark) },//处理标志
-            "s_applyState": { data: dc.getSelectItemList(Enum.ApplyState) },//申报状态
-            "s_gNo": { novalidate:true},//查询框中的序号字段不需要验证
-            "s_useType":{novalidate:true},
-            "s_codeT":{novalidate:true},
-            "s_gName":{novalidate:true}
+            }
         },
         fieldValid: {
-            gNo: { required: true,validType: "length[9]" },
-            useType: { required: true,validType: "length[9]" },
-            codeT: { required: true, validType: "length[10]" },
-            gName: { required: true, validType: "length[50]" },
-            unit: { required: true },
-            gModel: { validType: "length[255]" },
-            unit1: { required: true },
-            qty: { required: true, validType: "number[18,5]" },
-            decPrice: { required: true, validType: "number[18,5]" },
-            apprAmt: { required: true, validType: "number[18,5]" },
-            curr: { required: true },
-            countryCode: { required: true },
-            note: { validType: 'length[50]'}
+             <% temp1 =0;%>
+                {@each data.fields.rows as di, index}
+                        {@if di.isEditShow == "Y"}
+            {@if temp1>0},{@/if}$${di|generateFieldValid}             
+                            <% temp1 =temp1 + 1;%>
+                        {@/if}
+            {@/each}
         }
     };
 
@@ -266,16 +212,18 @@
                 });
             }
         });
-
-        //导出
-        $("#t_export").bind("click", function () {
-            dc.info.show("待实现");
-        });
-
+        {@if data.isGenerateImport == "true"}
         //导入
         $("#t_import").bind("click", function () {
             dc.info.show("待实现");
         });
+        {@/if}
+        {@if data.isGenerateExport == "true"}
+        //导出
+        $("#t_export").bind("click", function () {
+            dc.info.show("待实现");
+        });
+        {@/if}
 
     });
 
@@ -285,9 +233,6 @@
     //清除编辑区域
     var clearEditArea = function () {
         dc.setModel("#dc-data-wrapper", null);
-        dc.setValue("d_unit", "007");
-        dc.setValue("d_unit1", "001");
-        dc.setValue("d_curr", "110");
     };
 
     //关闭编辑区域

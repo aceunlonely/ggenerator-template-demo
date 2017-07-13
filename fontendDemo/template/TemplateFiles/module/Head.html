@@ -23,7 +23,7 @@
                         <table class="dc-dataTable">
                                 <% var temp = 0; %>
                             {@each data.fields.rows as di, index}
-                                {@if di.isQueryConditionShow == "Y"}
+                                {@if di.isEditShow == "Y"}
                                 
                                     {@if temp % data.pageColumnCount == 0}
                             <tr>   
@@ -53,7 +53,7 @@
 </html>
 <script type="text/javascript">
     //统一页面参数区域
-    var moduleUrl = dc.project.backendUrl + "/ZtythHbHead";
+    var moduleUrl = dc.project.backendUrl + "/${data.moduleName}";
     //控件定义区域
     dc.config = {
         page: {
@@ -66,7 +66,7 @@
                 {@each data.fields.rows as di, index}
                         {@if di.isEditShow == "Y"}
                             {@if di.controlType == "autocomplete" && di.codeType!="" }
-            {@if temp1>0},{@/if}"d_${di.FIELDDESC|getDcm}": { code: "${d.codeType}" }               
+            {@if temp1>0},{@/if}"d_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" }               
                             {@/if}
                             <% temp1 =temp1 + 1;%>
                         {@/if}
@@ -147,7 +147,4 @@
            
         });
     });
-    function dd() {
-        alert(window.location.href);
-    }
 </script>

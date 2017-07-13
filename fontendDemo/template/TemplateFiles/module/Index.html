@@ -92,7 +92,7 @@
                 {@each data.fields.rows as di, index}
                         {@if di.isQueryConditionShow == "Y"}
                             {@if di.controlType == "autocomplete" && di.codeType!="" }
-                "s_${di.FIELDDESC|getDcm}": { code: "${d.codeType}" },               
+                "s_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" },               
                             {@/if}
                         {@/if}
                 {@/each}

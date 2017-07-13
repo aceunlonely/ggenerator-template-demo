@@ -149,9 +149,12 @@
             pagecode:"page-body"
         },
         control: {
-            "d_decPrice": { precision: 5 },
-            "d_qty": { precision: 5 },
-            "d_apprAmt": { precision: 5 },
+ 
+
+            "s_gNo": { novalidate:true},//查询框中的序号字段不需要验证
+            "s_useType":{novalidate:true},
+            "s_codeT":{novalidate:true},
+            "s_gName":{novalidate:true},
             "g_table": {
                 url: moduleUrl + "/getList",
                 method: "POST",
@@ -183,23 +186,7 @@
                     { title: "申报状态", field: 'applyState', formatter: function (value, row, index) { return Enum.ApplyState[value]; } },
                     { title: "备注", field: 'note' }
                 ]]
-            },
-            "t_import": { "iconCls": "icon-dc-import" },
-            "t_export": { "iconCls": "icon-dc-export" },
-            "t_add": { "iconCls": "icon-dc-add" },
-            "t_set": { "iconCls": "icon-dc-edit" },
-            "d_unit": { disabled: true, data: dc.getSelectItemList(Enum.unit, "007") },
-            "d_unit1": { disabled: true, data: dc.getSelectItemList(Enum.unit, "001") },
-            "d_curr": { disabled: true, data: dc.getSelectItemList(Enum.Current, "110") },//币制
-            "d_countryCode": { data: dc.getSelectItemList(Enum.tradeCountry) },//产销国
-            "d_dutyMode": { data: dc.getSelectItemList(Enum.DutyMode, "1") },//征免方式
-            "d_applyState": { data: dc.getSelectItemList(Enum.ApplyState) },//申报状态
-            "s_modifyMark": { data: dc.getSelectItemList(Enum.modifyMark) },//处理标志
-            "s_applyState": { data: dc.getSelectItemList(Enum.ApplyState) },//申报状态
-            "s_gNo": { novalidate:true},//查询框中的序号字段不需要验证
-            "s_useType":{novalidate:true},
-            "s_codeT":{novalidate:true},
-            "s_gName":{novalidate:true}
+            }
         },
         fieldValid: {
             gNo: { required: true,validType: "length[9]" },
