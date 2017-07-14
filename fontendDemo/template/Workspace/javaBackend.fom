@@ -7,23 +7,4 @@
         <DATA>ddata</DATA>
     </NODE>
     <!--Tabs-->
-    <NODE>
-        <SOURCE>module/Tabs.html</SOURCE>
-        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Tabs.html</TARGET>
-        <DATA>ddata</DATA>
-    </NODE>
-    <!--Head-->
-    <NODE>
-        <SOURCE>module/Head.html</SOURCE>
-        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Head.html</TARGET>
-        <DATA>ddata</DATA>
-    </NODE>
-    <!--Body typeof(ddata.body)!="undefined"-->
-    {@if ddata.body }
-    <NODE>
-        <SOURCE>module/Body.html</SOURCE>
-        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Body.html</TARGET>
-        <DATA>ddata.body</DATA>
-    </NODE>
-    {@/if}
 </FOM>
