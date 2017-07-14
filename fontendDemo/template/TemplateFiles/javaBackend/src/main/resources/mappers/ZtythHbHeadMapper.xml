@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dcjet.javaBackendDemo.dao.ZtythHbHeadMapper" >
+  <resultMap id="BaseResultMap" type="com.dcjet.javaBackendDemo.entity.ZtythHbHeadEntity" >
+    <id column="OID" property="oid" jdbcType="VARCHAR" />
+    <result column="COMP_NO" property="compNo" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="DECIMAL" />
+    <result column="COP_EMS_NO" property="copEmsNo" jdbcType="VARCHAR" />
+    <result column="HB_NO" property="hbNo" jdbcType="VARCHAR" />
+    <result column="HB_BASE_NO" property="hbBaseNo" jdbcType="VARCHAR" />
+    <result column="MASTER_CUSTOMS" property="masterCustoms" jdbcType="VARCHAR" />
+    <result column="TRADE_CODE" property="tradeCode" jdbcType="VARCHAR" />
+    <result column="TRADE_NAME" property="tradeName" jdbcType="VARCHAR" />
+    <result column="TRADE_AEOTYPE" property="tradeAeotype" jdbcType="VARCHAR" />
+    <result column="OWNER_CODE" property="ownerCode" jdbcType="VARCHAR" />
+    <result column="OWNER_NAME" property="ownerName" jdbcType="VARCHAR" />
+    <result column="OWNER_AEOTYPE" property="ownerAeotype" jdbcType="VARCHAR" />
+    <result column="CONTACT_PERSON" property="contactPerson" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="PLANT_CONDITIO" property="plantConditio" jdbcType="VARCHAR" />
+    <result column="MODIFY_MARK" property="modifyMark" jdbcType="VARCHAR" />
+    <result column="IS_FIRST" property="isFirst" jdbcType="VARCHAR" />
+    <result column="TRADE_ADDRESS" property="tradeAddress" jdbcType="VARCHAR" />
+    <result column="OWNER_ADDRESS" property="ownerAddress" jdbcType="VARCHAR" />
+    <result column="MASTER_FTC" property="masterFtc" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_BANK" property="accountBank" jdbcType="VARCHAR" />
+    <result column="MANAGE_OBJECT" property="manageObject" jdbcType="VARCHAR" />
+    <result column="RECEIVE_AREA" property="receiveArea" jdbcType="VARCHAR" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="FOREIGN_CO_NAME" property="foreignCoName" jdbcType="VARCHAR" />
+    <result column="USE_HB_COUNT" property="useHbCount" jdbcType="VARCHAR" />
+    <result column="EQUIP_MODE" property="equipMode" jdbcType="VARCHAR" />
+    <result column="HB_TYPE" property="hbType" jdbcType="VARCHAR" />
+    <result column="TRADE_MODE" property="tradeMode" jdbcType="VARCHAR" />
+    <result column="CUT_MODE" property="cutMode" jdbcType="VARCHAR" />
+    <result column="TRADE_COUNTRY" property="tradeCountry" jdbcType="VARCHAR" />
+    <result column="PRODUCE_TYPE" property="produceType" jdbcType="VARCHAR" />
+    <result column="IN_RATIO" property="inRatio" jdbcType="VARCHAR" />
+    <result column="EMS_APPR_NO" property="emsApprNo" jdbcType="VARCHAR" />
+    <result column="APPROVE_ORG" property="approveOrg" jdbcType="VARCHAR" />
+    <result column="AGREE_NO" property="agreeNo" jdbcType="VARCHAR" />
+    <result column="APPR_IMG_AMT" property="apprImgAmt" jdbcType="VARCHAR" />
+    <result column="IM_CURR" property="imCurr" jdbcType="VARCHAR" />
+    <result column="CONTR_OUT" property="contrOut" jdbcType="VARCHAR" />
+    <result column="APPR_EXG_AMT" property="apprExgAmt" jdbcType="VARCHAR" />
+    <result column="EX_CURR" property="exCurr" jdbcType="VARCHAR" />
+    <result column="IMPORT_PERIOD" property="importPeriod" jdbcType="VARCHAR" />
+    <result column="EXPIRY_DATE" property="expiryDate" jdbcType="VARCHAR" />
+    <result column="IE_PORT" property="iePort" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="RISK_STATE" property="riskState" jdbcType="VARCHAR" />
+    <result column="SEND_TIME" property="sendTime" jdbcType="VARCHAR" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="INSERT_TIME" property="insertTime" jdbcType="VARCHAR" />
+    <result column="INSERT_USER" property="insertUser" jdbcType="VARCHAR" />
+    <result column="DBSOURCE" property="dbsource" jdbcType="VARCHAR" />
+    <result column="HEAD_CHANGE_OID" property="headChangeOid" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+        OID,
+	    COMP_NO,
+	    SERIAL_NO,
+	    COP_EMS_NO,
+	    HB_NO,
+	    HB_BASE_NO,
+	    MASTER_CUSTOMS,
+	    TRADE_CODE,
+	    TRADE_NAME,
+	    TRADE_AEOTYPE,
+	    OWNER_CODE,
+	    OWNER_NAME,
+	    OWNER_AEOTYPE,
+	    CONTACT_PERSON,
+	    CONTACT_PHONE,
+	    PLANT_CONDITIO,
+	    MODIFY_MARK,
+	    IS_FIRST,
+	    TRADE_ADDRESS,
+	    OWNER_ADDRESS,
+	    MASTER_FTC,
+	    ACCOUNT_BANK,
+	    MANAGE_OBJECT,
+	    RECEIVE_AREA,
+	    OPERATOR,
+	    PHONE,
+	    FOREIGN_CO_NAME,
+	    USE_HB_COUNT,
+	    EQUIP_MODE,
+	    HB_TYPE,
+	    TRADE_MODE,
+	    CUT_MODE,
+	    TRADE_COUNTRY,
+	    PRODUCE_TYPE,
+	    IN_RATIO,
+	    EMS_APPR_NO,
+	    APPROVE_ORG,
+	    AGREE_NO,
+	    APPR_IMG_AMT,
+	    IM_CURR,
+	    CONTR_OUT,
+	    APPR_EXG_AMT,
+	    EX_CURR,
+	    IMPORT_PERIOD,
+	    EXPIRY_DATE,
+	    IE_PORT,
+	    NOTE,
+	    STATE,
+	    RISK_STATE,
+	    SEND_TIME,
+	    END_TIME,
+	    INSERT_TIME,
+	    INSERT_USER,
+	    DBSOURCE,
+	    HEAD_CHANGE_OID,
+	    UPDATE_TIME,
+	    UPDATE_USER
+  </sql>
+  
+  <sql id="condition">
+  	<if test="oid != null and oid != ''">
+		and OID = #{oid}
+	</if>
+	<if test="copEmsNo != null and copEmsNo != ''">
+		and COP_EMS_NO = #{copEmsNo}
+	</if>
+	<if test="hbNo != null and hbNo != ''">
+		and HB_NO = #{hbNo}
+	</if>
+	<if test="serialNo != null and serialNo != ''">
+		and SERIAL_NO = #{serialNo}
+	</if>
+	<if test="state != null and state != ''">
+		and STATE = #{state}
+	</if>
+	<if test="riskState != null and riskState != ''">
+		and RISK_STATE = #{riskState}
+	</if>
+	<if test="expiryDateBegin != null and expiryDateBegin != ''">
+       	<![CDATA[ and EXPIRY_DATE >= to_date(#{expiryDateBegin}, 'yyyy-mm-dd hh24:mi:ss')]]>
+	</if>
+	<if test="expiryDateEnd != null and expiryDateEnd != ''">
+       	<![CDATA[ and EXPIRY_DATE <= to_date(#{expiryDateEnd}, 'yyyy-mm-dd hh24:mi:ss') ]]>
+	</if>   	
+  </sql>
+  <!-- 分页查询 -->
+  <select id="selectHeadListBySearch" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbHeadSearch" resultMap="BaseResultMap">
+   	select t.* from (
+    SELECT  <include refid="Base_Column_List" />, ROW_NUMBER () OVER (ORDER BY INSERT_TIME desc) AS RowNumber 
+    from T_ZTYTH_HB_HEAD   
+    <where>
+		<include refid="condition"></include>
+	</where>
+    ) t
+    WHERE RowNumber BETWEEN ${rows}*${page}-${rows}+1 AND ${rows}*${page}
+  </select>
+  
+  <!-- 分页统计-->
+  <select id="selectHeadListCountBySearch" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbHeadSearch" resultType="int">
+   	SELECT COUNT(1) FROM (
+    SELECT  <include refid="Base_Column_List" /> from T_ZTYTH_HB_HEAD   
+    <where>
+		<include refid="condition"></include>
+	</where>
+    ) t 
+  </select>
+  
+  <select id="selectHeadListForExport" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbHeadSearch" resultMap="BaseResultMap">
+   	select t.* from (
+    SELECT  <include refid="Base_Column_List" /> 
+    from T_ZTYTH_HB_HEAD   
+    <where>
+		<include refid="condition"></include>
+	</where>
+    ) t
+  </select>
+</mapper>
