@@ -1,11 +1,11 @@
-package com.dcjet.${data.solution.solutionName}.service;
+package com.dcjet.${ddata.solution.solutionName}.service;
 
 
 import java.util.ArrayList;
 
-import com.dcjet.${data.solution.solutionName}.base.IBackendService;
-import com.dcjet.${data.solution.solutionName}.entity.${data.moduleName}HeadEntity;
-import com.dcjet.${data.solution.solutionName}.search.${data.moduleName}HeadSearch;
+import com.dcjet.${ddata.solution.solutionName}.base.IBackendService;
+import com.dcjet.${ddata.solution.solutionName}.entity.${data.moduleName}HeadEntity;
+import com.dcjet.${ddata.solution.solutionName}.search.${data.moduleName}HeadSearch;
 
 /**
  * Copyright (c) 2017, 苏州神州数码捷通科技有限公司

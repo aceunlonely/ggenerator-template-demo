@@ -13,7 +13,7 @@
         <DATA>ddata.body</DATA>
     </NODE>
     {@/if}
-    <!--dao-->
+    <!--dao
     <NODE>
         <SOURCE>javaBackend/java/dao/HeadMapper.java</SOURCE>
         <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/dao/${ddata.moduleName}HeadMapper.java</TARGET>
@@ -26,7 +26,7 @@
         <DATA>ddata.body</DATA>
     </NODE>
     {@/if}
-     <!--entity-->
+    <!--entity
     <NODE>
         <SOURCE>javaBackend/java/entity/HeadEntity.java</SOURCE>
         <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/entity/${ddata.moduleName}HeadEntity.java</TARGET>
@@ -39,7 +39,7 @@
         <DATA>ddata.body</DATA>
     </NODE>
     {@/if}
-    <!--search-->
+    <!--search
     <NODE>
         <SOURCE>javaBackend/java/search/HeadSearch.java</SOURCE>
         <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/search/${ddata.moduleName}HeadSearch.java</TARGET>
@@ -52,7 +52,7 @@
         <DATA>ddata.body</DATA>
     </NODE>
     {@/if}
-    <!--service-->
+    <!--service
     <NODE>
         <SOURCE>javaBackend/java/service/IHeadService.java</SOURCE>
         <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/service/I${ddata.moduleName}HeadService.java</TARGET>
@@ -66,13 +66,13 @@
      {@if ddata.body}
     <NODE>
         <SOURCE>javaBackend/java/service/IBodyService.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/service/I${ddata.body.moduleName}BodyService.java</TARGET>
-        <DATA>ddata.body</DATA>
+        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/service/I${ddata.moduleName}BodyService.java</TARGET>
+        <DATA>ddata</DATA>
     </NODE>
     <NODE>
         <SOURCE>javaBackend/java/service/impl/BodyService.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/service/impl/${ddata.body.moduleName}BodyService.java</TARGET>
-        <DATA>ddata.body</DATA>
+        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/service/impl/${ddata.moduleName}BodyService.java</TARGET>
+        <DATA>ddata</DATA>
     </NODE>
-    {@/if}
+    {@/if} -->
 </FOM>

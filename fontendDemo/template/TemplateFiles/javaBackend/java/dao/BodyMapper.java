@@ -1,9 +1,9 @@
-package com.dcjet.${data.solution.solutionName}.dao;
+package com.dcjet.${ddata.solution.solutionName}.dao;
 
 import java.util.ArrayList;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.dcjet.${data.solution.solutionName}.entity.${data.moduleName}BodyEntity;
-import com.dcjet.${data.solution.solutionName}.search.${data.moduleName}BodySearch;
+import com.dcjet.${ddata.solution.solutionName}.entity.${data.moduleName}BodyEntity;
+import com.dcjet.${ddata.solution.solutionName}.search.${data.moduleName}BodySearch;
 
 /**
  * Copyright (c) 2017, 苏州神州数码捷通科技有限公司

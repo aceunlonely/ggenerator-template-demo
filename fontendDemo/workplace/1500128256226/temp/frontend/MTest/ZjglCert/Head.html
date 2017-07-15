@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/icon.css" rel="stylesheet" />
+    <link type="text/css" href="../../res/css/dc.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../dcUIFramework/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../dcUIFramework/dc.framework-0.0.1.js"></script>
+    <script type="text/javascript" src="../../dc.pageConfig.js"></script>
+    <title>MTest Head</title>
+</head>
+<body>
+    <div class="dc-form-wrapper">
+        <form>
+            <div class="dc-panel">
+                <div class="dc-panel-body">
+                    <div class="dc-data-wrapper">
+                        <table class="dc-dataTable">
+                            <tr>   
+                                <th>唯一标识</th>
+                                <td><input id="d_oid" dcc="textbox" dcm="oid" /></td>
+                                <th>证件关联ID</th>
+                                <td><input id="d_certOid" dcc="textbox" dcm="certOid" /></td>
+                                <th>料号</th>
+                                <td><input id="d_imgNo" dcc="textbox" dcm="imgNo" /></td>
+                            </tr>   
+                            <tr>   
+                                <th>项次</th>
+                                <td><input id="d_gNo" dcc="code-autocomplete" dcm="gNo" /></td>
+                                <th>商编</th>
+                                <td><input id="d_hsCode" dcc="textbox" dcm="hsCode" /></td>
+                                <th>品名</th>
+                                <td><input id="d_goodDesc" dcc="textbox" dcm="goodDesc" /></td>
+                            </tr>   
+                            <tr>   
+                                <th>料号位置</th>
+                                <td><input id="d_position" dcc="decimalbox" dcm="position" /></td>
+                                <th>备案量</th>
+                                <td><input id="d_maxQuantity" dcc="decimalbox" dcm="maxQuantity" /></td>
+                                <th>剩余数量</th>
+                                <td><input id="d_leftQuantity" dcc="decimalbox" dcm="leftQuantity" /></td>
+                            </tr>   
+                            <tr>   
+                                <th>材料本体/最小包装是否有3C/CQC</th>
+                                <td><input id="d_hasInnerCert" dcc="decimalbox" dcm="hasInnerCert" /></td>
+                                <th>IEC、GB或其他执行标准</th>
+                                <td><input id="d_standard" dcc="textbox" dcm="standard" /></td>
+                                <th>判定日期</th>
+                                <td><input id="d_judgeDate" dcc="datebox" dcm="judgeDate" /></td>
+                            </tr>   
+                            <tr>   
+                                <th>英文描述</th>
+                                <td><input id="d_enDesc" dcc="textbox" dcm="enDesc" /></td>
+                                <th>单位</th>
+                                <td><input id="d_unit" dcc="textbox" dcm="unit" /></td>
+                                <th>厂商</th>
+                                <td><input id="d_supply" dcc="textbox" dcm="supply" /></td>
+                            </tr>   
+                            <tr>   
+                                <th>厂商料号/型号</th>
+                                <td><input id="d_supplyImgNo" dcc="textbox" dcm="supplyImgNo" /></td>
+                                <th>厂别编码</th>
+                                <td><input id="d_companyCode" dcc="textbox" dcm="companyCode" /></td>
+                                <th>负责采购</th>
+                                <td><input id="d_puchaser" dcc="textbox" dcm="puchaser" /></td>
+                            </tr>   
+                            <tr>   
+                                <th>Incoterms</th>
+                                <td><input id="d_incoterms" dcc="textbox" dcm="incoterms" /></td>
+                                <th>国别/港口</th>
+                                <td><input id="d_port" dcc="textbox" dcm="port" /></td>
+                                <th>原產國</th>
+                                <td><input id="d_origin" dcc="textbox" dcm="origin" /></td>
+                            </tr>   
+                            <tr>   
+                                <th>貿易國</th>
+                                <td><input id="d_exportation" dcc="textbox" dcm="exportation" /></td>
+                                <th>代办证提醒OID</th>
+                                <td><input id="d_warnNeedOid" dcc="textbox" dcm="warnNeedOid" /></td>
+                                <th>状态</th>
+                                <td><input id="d_status" dcc="decimalbox" dcm="status" /></td>
+                            </tr>   
+                            <tr>   
+                                <th>是否确认(1 已确认/ 2未确认/3 规格图)</th>
+                                <td><input id="d_isconfirm" dcc="textbox" dcm="isconfirm" /></td>
+                                <th>备注</th>
+                                <td><input id="d_remark" dcc="textbox" dcm="remark" /></td>
+                                <th></th>
+                                <td><input id="d_gsCode" dcc="textbox" dcm="gsCode" /></td>
+                            </tr>   
+                            <tr>   
+                                <th>商检系统扣数量</th>
+                                <td><input id="d_hsQuantity" dcc="decimalbox" dcm="hsQuantity" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dc-foot-wrapper">
+                        <a id="f_confirm" dcc="button" class="dc-btn dc-btn-ok">确定</a>
+                        <a id="f_cancel" dcc="button" class="dc-btn dc-btn-cancel">返回</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    //统一页面参数区域
+    var moduleUrl = dc.project.backendUrl + "/ZjglCert";
+    //控件定义区域
+    dc.config = {
+        page: {
+            //页面code
+            pagecode: "page-head"
+        },
+        //控件配置区域
+        control: {
+            ,"d_gNo": { code: "abc" }               
+        },
+        //字段验证区域
+        fieldValid: {
+"oid": { name: "唯一标识", validType: ["length[36]"], required: true }             
+,"certOid": { name: "证件关联ID", validType: ["length[36]"] }             
+,"imgNo": { name: "料号", validType: ["length[100]"] }             
+,"gNo": { name: "项次" }             
+,"hsCode": { name: "商编", validType: ["length[100]"] }             
+,"goodDesc": { name: "品名", validType: ["length[100]"] }             
+,"position": { name: "料号位置", validType: ["number[22,0]"] }             
+,"maxQuantity": { name: "备案量", validType: ["number[9,0]"] }             
+,"leftQuantity": { name: "剩余数量", validType: ["number[9,0]"] }             
+,"hasInnerCert": { name: "材料本体/最小包装是否有3C/CQC", validType: ["number[22,0]"] }             
+,"standard": { name: "IEC、GB或其他执行标准", validType: ["length[500]"] }             
+,"judgeDate": { name: "判定日期", validType: ["date"] }             
+,"enDesc": { name: "英文描述", validType: ["length[500]"] }             
+,"unit": { name: "单位", validType: ["length[50]"] }             
+,"supply": { name: "厂商", validType: ["length[200]"] }             
+,"supplyImgNo": { name: "厂商料号/型号", validType: ["length[100]"] }             
+,"companyCode": { name: "厂别编码", validType: ["length[100]"] }             
+,"puchaser": { name: "负责采购", validType: ["length[200]"] }             
+,"incoterms": { name: "Incoterms", validType: ["length[500]"] }             
+,"port": { name: "国别/港口", validType: ["length[100]"] }             
+,"origin": { name: "原產國", validType: ["length[100]"] }             
+,"exportation": { name: "貿易國", validType: ["length[100]"] }             
+,"warnNeedOid": { name: "代办证提醒OID", validType: ["length[36]"] }             
+,"status": { name: "状态", validType: ["number[22,0]"] }             
+,"isconfirm": { name: "是否确认(1 已确认/ 2未确认/3 规格图)", validType: ["length[50]"] }             
+,"remark": { name: "备注", validType: ["length[1000]"] }             
+,"gsCode": { name: "undefined", validType: ["length[50]"] }             
+,"hsQuantity": { name: "商检系统扣数量", validType: ["number[9,0]"] }             
+        }
+    };
+    $(function () {
+        //初始化所有控件
+        dc.init();
+
+        //事件绑定区域
+        var oid = dc.util.getRequest().oid;
+
+        //初始化页面赋值
+        //dc.setValue("d_compNo", "9999999999");
+
+        if (oid) {
+            dc.post(moduleUrl + "/get", { "oid": oid }, function (data) {
+                if (data && data.success) {
+                    dc.setModel("form", data.data);
+                }
+            });
+        }
+
+        //确认
+        $("#f_confirm").bind("click", function () {
+            var entity = dc.getModel("form");
+            entity.oid = oid;
+
+            //控件验证
+            if ($("form").form("validate")) {
+                //逻辑校验
+
+                //提交
+                dc.post(moduleUrl + "/edit", entity, function (data) {
+                    if (data && data.success) {
+                        dc.info.alert("保存成功",
+                            {
+                                fn: function () {
+                                    if (!oid) {
+                                        oid = data.data;
+                                        //tab操作
+                                        dc.invoke("page-tabs",
+                                            function () {
+                                                if (this.addBodyTab)
+                                                    this.addBodyTab(oid);
+                                            });
+
+                                    } else {
+                                        //更新时，不做特殊处理
+                                    }
+                                }
+                            });
+                    } else {
+                        console.error(data.error);
+                        dc.info.warn("新增失败");
+                    }
+                });
+            }
+        });
+        //返回
+        $("#f_cancel").bind("click", function () {
+            var addUrl = dc.util.getUrl() + ("/Index.html");
+            dc.invoke("page-tabs",
+                function () {
+                    this.dc.out.redirect(addUrl, "MTest Index");
+                });
+        });
+    });
+</script>

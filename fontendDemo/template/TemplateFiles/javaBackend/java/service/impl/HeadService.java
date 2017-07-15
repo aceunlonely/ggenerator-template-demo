@@ -1,15 +1,15 @@
-package com.dcjet.${data.solution.solutionName}.service.impl;
+package com.dcjet.${ddata.solution.solutionName}.service.impl;
 
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dcjet.${data.solution.solutionName}.base.BackendService;
-import com.dcjet.${data.solution.solutionName}.dao.${data.moduleName}HeadMapper;
-import com.dcjet.${data.solution.solutionName}.entity.${data.moduleName}HeadEntity;
-import com.dcjet.${data.solution.solutionName}.search.${data.moduleName}HeadSearch;
-import com.dcjet.${data.solution.solutionName}.service.I${data.moduleName}HeadService;
+import com.dcjet.${ddata.solution.solutionName}.base.BackendService;
+import com.dcjet.${ddata.solution.solutionName}.dao.${data.moduleName}HeadMapper;
+import com.dcjet.${ddata.solution.solutionName}.entity.${data.moduleName}HeadEntity;
+import com.dcjet.${ddata.solution.solutionName}.search.${data.moduleName}HeadSearch;
+import com.dcjet.${ddata.solution.solutionName}.service.I${data.moduleName}HeadService;
 
 /**
  * Copyright (c) 2017, 苏州神州数码捷通科技有限公司

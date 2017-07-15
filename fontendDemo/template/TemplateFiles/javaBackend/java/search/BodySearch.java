@@ -1,6 +1,6 @@
-package com.dcjet.${data.solution.solutionName}.search;
+package com.dcjet.${ddata.solution.solutionName}.search;
 
-import com.dcjet.${data.solution.solutionName}.base.BackendBaseSearch;
+import com.dcjet.${ddata.solution.solutionName}.base.BackendBaseSearch;
 
 /**
  * Copyright (c) 2017, 苏州神州数码捷通科技有限公司

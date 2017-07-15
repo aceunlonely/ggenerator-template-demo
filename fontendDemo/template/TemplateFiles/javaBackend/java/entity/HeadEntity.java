@@ -1,4 +1,4 @@
-package com.dcjet.${data.solution.solutionName}.entity;
+package com.dcjet.${ddata.solution.solutionName}.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -44,7 +44,7 @@ public class ${data.moduleName}HeadEntity extends BaseEntity<${data.moduleName}H
 	@ByteLength(max = ${di.LENGTH}, message = "${di.FIELDDESC}长度超过限制！")
 	{@/if}
 	{@if di.DBTYPE=="number" || di.DBTYPE=="numeric" }
-	@Digits(integer = ${di.INTLENGTH}, fraction = ${di.SCALE}, message = "${di.FIELDDESC数字范围超过限制！")
+	@Digits(integer = ${di.INTLENGTH}, fraction = ${di.SCALE}, message = "${di.FIELDDESC}数字范围超过限制！")
 	{@/if}
 	${di|generateEntityField}
 

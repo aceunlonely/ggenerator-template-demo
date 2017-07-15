@@ -7,11 +7,12 @@ _templateEngineExt.firstLowerCase = function(A){
 }
 
 _templateEngineExt.firstUpperCase = function(A){
-    return _templateEngineExt.getDcm(A).replace(/(\w)/,function(v){return v.toUpperCase()});
+    return A.toLowerCase().replace(/(\w)/,function(v){return v.toUpperCase()});
 }
 
 //处理常量
 _templateEngineExt.getDcm = function(str){
+    if(!str) return "";
     var arr =[];
 
     var list = str.toUpperCase().split('_');

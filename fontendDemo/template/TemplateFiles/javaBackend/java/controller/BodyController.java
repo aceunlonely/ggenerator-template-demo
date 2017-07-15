@@ -1,4 +1,4 @@
-package com.dcjet.${data.solution.solutionName}.controller;
+package com.dcjet.${ddata.solution.solutionName}.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,11 +18,11 @@ import com.dcjet.apollo.framework.utils.PubUtil;
 import com.dcjet.apollo.framework.utils.constant.ExcelPostfixEnum;
 import com.dcjet.apollo.framework.web.common.ResponseResult;
 import com.dcjet.apollo.framework.web.utils.ExcelExtendUtil;
-import com.dcjet.${data.solution.solutionName}.base.BackendBaseController;
-import com.dcjet.${data.solution.solutionName}.common.FrontendGridResult;
-import com.dcjet.${data.solution.solutionName}.entity.${data.moduleName}BodyEntity;
-import com.dcjet.${data.solution.solutionName}.search.${data.moduleName}BodySearch;
-import com.dcjet.${data.solution.solutionName}.service.I${data.moduleName}BodyService;
+import com.dcjet.${ddata.solution.solutionName}.base.BackendBaseController;
+import com.dcjet.${ddata.solution.solutionName}.common.FrontendGridResult;
+import com.dcjet.${ddata.solution.solutionName}.entity.${data.moduleName}BodyEntity;
+import com.dcjet.${ddata.solution.solutionName}.search.${data.moduleName}BodySearch;
+import com.dcjet.${ddata.solution.solutionName}.service.I${data.moduleName}BodyService;
 
 /**
  * Copyright (c) 2017, 苏州神州数码捷通科技有限公司
