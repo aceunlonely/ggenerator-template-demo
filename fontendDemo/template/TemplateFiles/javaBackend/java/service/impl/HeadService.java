@@ -1,42 +1,42 @@
-package com.dcjet.javaBackendDemo.service.impl;
+package com.dcjet.${data.solution.solutionName}.service.impl;
 
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dcjet.javaBackendDemo.base.BackendService;
-import com.dcjet.javaBackendDemo.dao.ZtythHbHeadMapper;
-import com.dcjet.javaBackendDemo.entity.ZtythHbHeadEntity;
-import com.dcjet.javaBackendDemo.search.ZtythHbHeadSearch;
-import com.dcjet.javaBackendDemo.service.IZtythHbHeadService;
+import com.dcjet.${data.solution.solutionName}.base.BackendService;
+import com.dcjet.${data.solution.solutionName}.dao.${data.moduleName}HeadMapper;
+import com.dcjet.${data.solution.solutionName}.entity.${data.moduleName}HeadEntity;
+import com.dcjet.${data.solution.solutionName}.search.${data.moduleName}HeadSearch;
+import com.dcjet.${data.solution.solutionName}.service.I${data.moduleName}HeadService;
 
 /**
  * Copyright (c) 2017, 苏州神州数码捷通科技有限公司
  * All rights reserved.
  * 
- * <h3>手册设立表头服务实现接口</h3>
+ * <h3>表头服务实现接口</h3>
  * @version 1.0
  * @author Administrator
  * 
  */
-@Service("ZtythHbHeadService")
-public class ZtythHbHeadService extends BackendService<ZtythHbHeadEntity> implements IZtythHbHeadService {
+@Service("${data.moduleName}HeadService")
+public class ${data.moduleName}HeadService extends BackendService<${data.moduleName}HeadEntity> implements I${data.moduleName}HeadService {
 	@Autowired
-	ZtythHbHeadMapper ztythHbHeadMapper;
+	${data.moduleName}HeadMapper ${data.moduleName|firstLowerCase}HeadMapper;
 		
 	@Override
-	public ArrayList<ZtythHbHeadEntity> selectHeadListBySearch(ZtythHbHeadSearch search) {
-		return ztythHbHeadMapper.selectHeadListBySearch(search);
+	public ArrayList<${data.moduleName}HeadEntity> selectHeadListBySearch(${data.moduleName}HeadSearch search) {
+		return ${data.moduleName|firstLowerCase}HeadMapper.selectHeadListBySearch(search);
 	}
 
 	@Override
-	public int selectHeadListCountBySearch(ZtythHbHeadSearch search) {
-		return ztythHbHeadMapper.selectHeadListCountBySearch(search);
+	public int selectHeadListCountBySearch(${data.moduleName}HeadSearch search) {
+		return ${data.moduleName|firstLowerCase}HeadMapper.selectHeadListCountBySearch(search);
 	}
 
 	@Override
-	public ArrayList<ZtythHbHeadEntity> selectHeadListForExport(ZtythHbHeadSearch search) {
-		return ztythHbHeadMapper.selectHeadListForExport(search);
+	public ArrayList<${data.moduleName}HeadEntity> selectHeadListForExport(${data.moduleName}HeadSearch search) {
+		return ${data.moduleName|firstLowerCase}HeadMapper.selectHeadListForExport(search);
 	}
 }

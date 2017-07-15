@@ -1,4 +1,4 @@
-package com.dcjet.javaBackendDemo.controller;
+package com.dcjet.${data.solution.solutionName}.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,11 +18,11 @@ import com.dcjet.apollo.framework.utils.PubUtil;
 import com.dcjet.apollo.framework.utils.constant.ExcelPostfixEnum;
 import com.dcjet.apollo.framework.web.common.ResponseResult;
 import com.dcjet.apollo.framework.web.utils.ExcelExtendUtil;
-import com.dcjet.javaBackendDemo.base.BackendBaseController;
-import com.dcjet.javaBackendDemo.common.FrontendGridResult;
-import com.dcjet.javaBackendDemo.entity.ZtythHbImgEntity;
-import com.dcjet.javaBackendDemo.search.ZtythHbImgSearch;
-import com.dcjet.javaBackendDemo.service.IZtythHbImgService;
+import com.dcjet.${data.solution.solutionName}.base.BackendBaseController;
+import com.dcjet.${data.solution.solutionName}.common.FrontendGridResult;
+import com.dcjet.${data.solution.solutionName}.entity.${data.moduleName}BodyEntity;
+import com.dcjet.${data.solution.solutionName}.search.${data.moduleName}BodySearch;
+import com.dcjet.${data.solution.solutionName}.service.I${data.moduleName}BodyService;
 
 /**
  * Copyright (c) 2017, 苏州神州数码捷通科技有限公司
@@ -33,10 +33,10 @@ import com.dcjet.javaBackendDemo.service.IZtythHbImgService;
  * @author Administrator
  */
 @Controller
-@RequestMapping("/ZtythHbImg")
-public class ZtythHbImgController extends BackendBaseController {
+@RequestMapping("/${data.moduleName}Body")
+public class ${data.moduleName}BodyController extends BackendBaseController {
 	@Resource
-	private IZtythHbImgService ztythHbImgService; 
+	private I${data.moduleName}BodyService ${data.moduleName|firstLowerCase}BodyService; 
 	
 	/**
 	 * 获取数据分页列表
@@ -45,10 +45,10 @@ public class ZtythHbImgController extends BackendBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getList")
-	public FrontendGridResult<ZtythHbImgEntity> getList(HttpServletResponse response, ZtythHbImgSearch searchEntity) {
-		ArrayList<ZtythHbImgEntity> list = ztythHbImgService.selectBodyListBySearch(searchEntity); 
-		int total = ztythHbImgService.selectBodyListCountBySearch(searchEntity);
-		FrontendGridResult<ZtythHbImgEntity> result = new FrontendGridResult<ZtythHbImgEntity>(total,list);
+	public FrontendGridResult<${data.moduleName}BodyEntity> getList(HttpServletResponse response, ${data.moduleName}BodySearch searchEntity) {
+		ArrayList<${data.moduleName}BodyEntity> list = ${data.moduleName|firstLowerCase}BodyService.selectBodyListBySearch(searchEntity); 
+		int total = ${data.moduleName|firstLowerCase}BodyService.selectBodyListCountBySearch(searchEntity);
+		FrontendGridResult<${data.moduleName}BodyEntity> result = new FrontendGridResult<${data.moduleName}BodyEntity>(total,list);
 		return result;
 	}
 		
@@ -60,7 +60,7 @@ public class ZtythHbImgController extends BackendBaseController {
 	@ResponseBody
 	@RequestMapping("/get")
 	public ResponseResult get(String oid) {
-		ZtythHbImgEntity body = ztythHbImgService.selectById(oid);
+		${data.moduleName}BodyEntity body = ${data.moduleName|firstLowerCase}BobyService.selectById(oid);
 		ResponseResult responseResult = new ResponseResult();
 		responseResult.addData(body);
 		return responseResult;
@@ -75,7 +75,7 @@ public class ZtythHbImgController extends BackendBaseController {
 	@RequestMapping("/delete")
 	public ResponseResult delete(String oid) {
 		ResponseResult responseResult = new ResponseResult();
-		ActionResult result = ztythHbImgService.deleteBatchIdsFor(Arrays.asList(oid.split(",")));
+		ActionResult result = ${data.moduleName|firstLowerCase}BodyService.deleteBatchIdsFor(Arrays.asList(oid.split(",")));
 		responseResult.setSuccess(result.getSuccess());
 		return responseResult;
 	}
@@ -87,16 +87,15 @@ public class ZtythHbImgController extends BackendBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/edit" )
-	public ResponseResult edit(HttpServletResponse response,ZtythHbImgEntity body) {
+	public ResponseResult edit(HttpServletResponse response,${data.moduleName}BodyEntity body) {
 		ResponseResult responseResult = new ResponseResult();
 		ActionResult result = new ActionResult();
 		if (StringUtils.isNotBlank(body.getOid())) {
-			result = ztythHbImgService.updateByIdFor(body);
+			result = ${data.moduleName|firstLowerCase}BodyService.updateByIdFor(body);
 		} else {
 			body.setOid(PubUtil.generateUUID());
-			result = ztythHbImgService.insertFor(body);
+			result = ${data.moduleName|firstLowerCase}BodyService.insertFor(body);
 		}
-
 		if(result.getSuccess()) {
 			responseResult.setSuccess();
 			responseResult.addData(body.getOid());
@@ -114,17 +113,18 @@ public class ZtythHbImgController extends BackendBaseController {
 	 * @return
 	 */
 	@RequestMapping("/export")
-	public void exportExcel(HttpServletResponse response, ZtythHbImgSearch searchEntity) throws IOException {
+	public void exportExcel(HttpServletResponse response, ${data.moduleName}BodySearch searchEntity) throws IOException {
 		//获取导出数据
-		ArrayList<ZtythHbImgEntity> lst = ztythHbImgService.selectBodyListForExport(searchEntity);
+		ArrayList<${data.moduleName}BodyEntity> lst = ${data.moduleName|firstLowerCase}BodyService.selectBodyListForExport(searchEntity);
 		//导出数据项
 		LinkedHashMap<String, String> fieldMap = new LinkedHashMap<String, String>();
-		fieldMap.put("hbNo", "手册编号");
-		fieldMap.put("codeT", "商品编码");
-		fieldMap.put("gName", "商品名称");
-		fieldMap.put("gModel", "规格型号");
+        {@each data.fields.rows as di, index}
+                        {@if di.isTableShow == "Y"}
+		fieldMap.put("${di.FIELDNAME|getDcm}", "${di.FIELDDESC}");
+                        {@/if}
+        {@/each}
 		//Execl中sheet名称
-		String sheetName = "手册设立料件表";
+		String sheetName = "XXX表";
 		try{
 			String fileName = DateTimeUtil.convertDateToString(
 					DateTimeUtil.D17_DATETIME_PATTERN, new Date())

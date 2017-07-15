@@ -7,7 +7,7 @@ _templateEngineExt.firstLowerCase = function(A){
 }
 
 _templateEngineExt.firstUpperCase = function(A){
-    return A.toLowerCase().replace(/(\w)/,function(v){return v.toUpperCase()});
+    return _templateEngineExt.getDcm(A).replace(/(\w)/,function(v){return v.toUpperCase()});
 }
 
 //处理常量
@@ -216,6 +216,61 @@ _templateEngineExt.generateFieldValid = function(di)
          result = result + ', required: true';
     }
     return result + " }";
+}
+
+
+
+_templateEngineExt.generateEntityField = function(di)
+{
+    /*{
+                "SCALE": "0",
+                "FIELDNAME": "JUDGE_DATE",
+                "PRIMARYKEY": "0",
+                "INTLENGTH": "23",
+                "TABLENAME": "T_ZJGL_CERT_LIST_IMG",
+                "FILEDINDEX": "12",
+                "FIELDDESC": "判定日期",
+                "LENGTH": "23",
+                "DBTYPE": "datetime",
+                "ISNULL": "1",
+                "COMLENGTH": "23.0",
+                "controlType": "1",
+                "codeType": "",
+                "importColumnType": "1",
+                "isTableShow": "Y",
+                "isQueryConditionShow": "Y",
+                "isEditShow": "Y"
+            }*/
+    //{ "1" : "非公共代码库类型" ,"autocomplete" :"autocomplete" ,"select" :"select","m-select":"m-select" ,"m-checkbox":"m-checkbox","radio":"radio"};
+
+    //"hbBaseNo": { name: "备案资料库编号", validType: ["length[12]"], required: true },
+    /*"apprExgAmt": { name: "出口总值", validType: "number[13,5]" },
+            "exCurr": { name: "出口币制", required: true },
+            "importPeriod": { name: "进口期限", validType: 'date' },
+            "expiryDate": { name: "有效日期", required: true, validType: 'date' },*/
+    var dcm = _templateEngineExt.getDcm(di.FIELDNAME);
+    var type =di.controlType;
+    var result = 'private ';
+    switch(di.DBTYPE){
+        case "varchar":
+        case "nvarchar":
+        case "nchar":
+            result = result + ' String';
+            break;
+        case "number":
+        case "numeric":
+            result = result + ' BigDecimal';
+            break;
+        case "datetime":
+        case "date":
+            result = result + ' Date';
+            break;
+        case "int":
+        case "long":
+            result = result + ' Interger';
+            break;
+    }
+    return result + ' '+ dcm +';';
 }
 
 

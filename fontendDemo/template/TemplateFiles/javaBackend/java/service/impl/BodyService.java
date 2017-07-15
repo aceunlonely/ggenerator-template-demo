@@ -1,40 +1,40 @@
-package com.dcjet.javaBackendDemo.service.impl;
+package com.dcjet.${data.solution.solutionName}.service.impl;
 
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.dcjet.javaBackendDemo.base.BackendService;
-import com.dcjet.javaBackendDemo.dao.ZtythHbImgMapper;
-import com.dcjet.javaBackendDemo.entity.ZtythHbImgEntity;
-import com.dcjet.javaBackendDemo.search.ZtythHbImgSearch;
-import com.dcjet.javaBackendDemo.service.IZtythHbImgService;
+import com.dcjet.${data.solution.solutionName}.base.BackendService;
+import com.dcjet.${data.solution.solutionName}.dao.${data.moduleName}BodyMapper;
+import com.dcjet.${data.solution.solutionName}.entity.${data.moduleName}BodyEntity;
+import com.dcjet.${data.solution.solutionName}.search.${data.moduleName}BodySearch;
+import com.dcjet.${data.solution.solutionName}.service.I${data.moduleName}BodyService;
 
 /**
  * Copyright (c) 2017, 苏州神州数码捷通科技有限公司
  * All rights reserved.
  * 
- * <h3>手册设立料件服务实现接口</h3>
+ * <h3>表体服务实现接口</h3>
  * @version 1.0
  * @author Administrator
  * 
  */
-@Service("ZtythHbImgService")
-public class ZtythHbImgService extends BackendService<ZtythHbImgEntity> implements IZtythHbImgService {
+@Service("${data.moduleName}BodyService")
+public class ${data.moduleName}BodyService extends BackendService<${data.moduleName}BodyEntity> implements I${data.moduleName}BodyService {
 	@Autowired
-	ZtythHbImgMapper ztythHbImgMapper;
+	${data.moduleName}BodyMapper ${data.moduleName|firstLowerCase}BodyMapper;
 		
 	@Override
-	public ArrayList<ZtythHbImgEntity> selectBodyListBySearch(ZtythHbImgSearch search) {
-		return ztythHbImgMapper.selectBodyListBySearch(search);
+	public ArrayList<${data.moduleName}BodyEntity> selectBodyListBySearch(${data.moduleName}BodySearch search) {
+		return ${data.moduleName|firstLowerCase}BodyMapper.selectBodyListBySearch(search);
 	}
 
 	@Override
-	public int selectBodyListCountBySearch(ZtythHbImgSearch search) {
-		return ztythHbImgMapper.selectBodyListCountBySearch(search);
+	public int selectBodyListCountBySearch(${data.moduleName}BodySearch search) {
+		return ${data.moduleName|firstLowerCase}BodyMapper.selectBodyListCountBySearch(search);
 	}
 	
 	@Override
-	public ArrayList<ZtythHbImgEntity> selectBodyListForExport(ZtythHbImgSearch search) {
-		return ztythHbImgMapper.selectBodyListForExport(search);
+	public ArrayList<${data.moduleName}BodyEntity> selectBodyListForExport(${data.moduleName}BodySearch search) {
+		return ${data.moduleName|firstLowerCase}BodyMapper.selectBodyListForExport(search);
 	}
 }

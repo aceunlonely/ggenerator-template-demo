@@ -1,4 +1,4 @@
-package com.dcjet.javaBackendDemo.controller;
+package com.dcjet.${data.solution.solutionName}.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,11 +18,11 @@ import com.dcjet.apollo.framework.utils.PubUtil;
 import com.dcjet.apollo.framework.utils.constant.ExcelPostfixEnum;
 import com.dcjet.apollo.framework.web.common.ResponseResult;
 import com.dcjet.apollo.framework.web.utils.ExcelExtendUtil;
-import com.dcjet.javaBackendDemo.base.BackendBaseController;
-import com.dcjet.javaBackendDemo.common.FrontendGridResult;
-import com.dcjet.javaBackendDemo.entity.ZtythHbHeadEntity;
-import com.dcjet.javaBackendDemo.search.ZtythHbHeadSearch;
-import com.dcjet.javaBackendDemo.service.IZtythHbHeadService;
+import com.dcjet.${data.solution.solutionName}.base.BackendBaseController;
+import com.dcjet.${data.solution.solutionName}.common.FrontendGridResult;
+import com.dcjet.${data.solution.solutionName}.entity.${data.moduleName}HeadEntity;
+import com.dcjet.${data.solution.solutionName}.search.${data.moduleName}HeadSearch;
+import com.dcjet.${data.solution.solutionName}.service.I${data.moduleName}HeadService;
 
 /**
  * Copyright (c) 2017, 苏州神州数码捷通科技有限公司
@@ -33,10 +33,10 @@ import com.dcjet.javaBackendDemo.service.IZtythHbHeadService;
  * @author Administrator
  */
 @Controller
-@RequestMapping("/ZtythHbHead")
-public class ZtythHbHeadController extends BackendBaseController {
+@RequestMapping("/${data.moduleName}Head")
+public class ${data.moduleName}HeadController extends BackendBaseController {
 	@Resource
-	private IZtythHbHeadService ztythHbService; 
+	private I${data.moduleName}HeadService ${data.moduleName|firstLowerCase}HeadService; 
 
 	/**
 	 * 获取数据分页列表
@@ -45,10 +45,10 @@ public class ZtythHbHeadController extends BackendBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value ="/getList")
-	public FrontendGridResult<ZtythHbHeadEntity> getList(ZtythHbHeadSearch searchEntity) throws IOException {			
-		ArrayList<ZtythHbHeadEntity> lst = ztythHbService.selectHeadListBySearch(searchEntity);
-		int total = ztythHbService.selectHeadListCountBySearch(searchEntity);
-		FrontendGridResult<ZtythHbHeadEntity> result = new FrontendGridResult<ZtythHbHeadEntity>(total,lst);
+	public FrontendGridResult<${data.moduleName}HeadEntity> getList(${data.moduleName}HeadSearch searchEntity) throws IOException {			
+		ArrayList<${data.moduleName}HeadEntity> lst = ${data.moduleName|firstLowerCase}HeadService.selectHeadListBySearch(searchEntity);
+		int total = ${data.moduleName|firstLowerCase}HeadService.selectHeadListCountBySearch(searchEntity);
+		FrontendGridResult<${data.moduleName}HeadEntity> result = new FrontendGridResult<${data.moduleName}HeadEntity>(total,lst);
 		return result;
 	}
 	
@@ -60,7 +60,7 @@ public class ZtythHbHeadController extends BackendBaseController {
 	@ResponseBody
 	@RequestMapping(value ="/get")
 	public ResponseResult get(String oid) {
-		ZtythHbHeadEntity head = ztythHbService.selectById(oid);
+		${data.moduleName}HeadEntity head = ${data.moduleName|firstLowerCase}HeadService.selectById(oid);
 		ResponseResult responseResult = new ResponseResult();
 		responseResult.addData(head);
 		return responseResult;
@@ -75,7 +75,7 @@ public class ZtythHbHeadController extends BackendBaseController {
 	@RequestMapping(value ="/delete")
 	public ResponseResult delete(String oid) {
 		ResponseResult responseResult = new ResponseResult();
-		ActionResult result = ztythHbService.deleteBatchIdsFor(Arrays.asList(oid.split(",")));
+		ActionResult result = ${data.moduleName|firstLowerCase}HeadService.deleteBatchIdsFor(Arrays.asList(oid.split(",")));
 		responseResult.setSuccess(result.getSuccess());
 		return responseResult;
 	}
@@ -87,16 +87,15 @@ public class ZtythHbHeadController extends BackendBaseController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/edit")
-	public ResponseResult edit(ZtythHbHeadEntity head) {
+	public ResponseResult edit(${data.moduleName}HeadEntity head) {
 		ResponseResult responseResult = new ResponseResult();
 		ActionResult result = new ActionResult();
 		if (StringUtils.isNotBlank(head.getOid())) {
-			result = ztythHbService.updateByIdFor(head);
+			result = ${data.moduleName|firstLowerCase}HeadService.updateByIdFor(head);
 		} else {
 			head.setOid(PubUtil.generateUUID());
-			result = ztythHbService.insertFor(head);
+			result = ${data.moduleName|firstLowerCase}HeadService.insertFor(head);
 		}
-		
 		if(result.getSuccess()) {
 			responseResult.setSuccess();
 			responseResult.addData(head.getOid());
@@ -114,17 +113,18 @@ public class ZtythHbHeadController extends BackendBaseController {
 	 * @return
 	 */
 	@RequestMapping("/export")
-	public void exportExcel(HttpServletResponse response, ZtythHbHeadSearch searchEntity) throws IOException {
+	public void exportExcel(HttpServletResponse response, ${data.moduleName}HeadSearch searchEntity) throws IOException {
 		//获取导出数据
-		ArrayList<ZtythHbHeadEntity> lst = ztythHbService.selectHeadListForExport(searchEntity);
+		ArrayList<${data.moduleName}HeadEntity> lst = ${data.moduleName|firstLowerCase}HeadService.selectHeadListForExport(searchEntity);
 		//导出数据项
 		LinkedHashMap<String, String> fieldMap = new LinkedHashMap<String, String>();
-		fieldMap.put("compNo", "企业编码");
-		fieldMap.put("tradeName", "经营单位名称");
-		fieldMap.put("ownerName", "加工单位名称");
-		fieldMap.put("masterCustoms", "主管海关");
+		{@each data.fields.rows as di, index}
+                        {@if di.isTableShow == "Y"}
+		fieldMap.put("${di.FIELDNAME|getDcm}", "${di.FIELDDESC}");
+                        {@/if}
+        {@/each}
         //Execl中sheet名称
-		String sheetName = "手册设立表头";
+		String sheetName = "XXXX表";
 		try{
 			String fileName = DateTimeUtil.convertDateToString(
 					DateTimeUtil.D17_DATETIME_PATTERN, new Date())
