@@ -37,7 +37,7 @@
 		<include refid="condition"></include>
 	</where>
     ) t
-    WHERE RowNumber BETWEEN ${rows}*${page}-${rows}+1 AND ${rows}*${page}
+    WHERE RowNumber BETWEEN <gg[$]>{rows}*<gg[$]>{page}-<gg[$]>{rows}+1 AND <gg[$]>{rows}*<gg[$]>{page}
   </select>
   
   
