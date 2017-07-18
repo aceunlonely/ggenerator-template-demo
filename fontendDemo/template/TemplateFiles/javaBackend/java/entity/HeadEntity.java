@@ -28,8 +28,7 @@ import com.dcjet.apollo.framework.utils.validation.ByteLength;
 public class ${data.moduleName}HeadEntity extends BaseEntity<${data.moduleName}HeadEntity>  {
 	private static final long serialVersionUID = 1L;
 	
-	{@each data.fields.rows as di, index}
-    { title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}' }       
+	{@each data.fields.rows as di, index}   
 	/**
 	 * ${di.FIELDDESC}
 	 */
@@ -48,13 +47,16 @@ public class ${data.moduleName}HeadEntity extends BaseEntity<${data.moduleName}H
 	{@/if}
 	${di|generateEntityField}
 
-	public String get${di.FIELDNAME|firstUpperCase}() {
+    {@/each}
+
+	{@each data.fields.rows as di, index}
+		public ${di|getEntityFieldType} get${di.FIELDNAME|firstUpperCase}() {
 		return ${di.FIELDNAME|getDcm};
 	}
 
-	public void set${di.FIELDNAME|firstUpperCase}(String ${di.FIELDNAME|getDcm}) {
+	public void set${di.FIELDNAME|firstUpperCase}(${di|getEntityFieldType} ${di.FIELDNAME|getDcm}) {
 		this.${di.FIELDNAME|getDcm} = ${di.FIELDNAME|getDcm};
 	}
 
-    {@/each}
+	{@/each}
 }

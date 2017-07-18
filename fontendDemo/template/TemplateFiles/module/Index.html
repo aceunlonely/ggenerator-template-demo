@@ -200,17 +200,17 @@
         {@/if}
 
         {@if data.isGenerateImport == "true"}
+        //导入
+        function dc_import() {
+            dc.info.show("待实现");
+        }
+        {@/if}
+
+        {@if data.isGenerateExport == "true"}
         //导出
         function dc_export() {
             var model = dc.getModel("form");
             window.location.href = moduleUrl + "/export?" + $.param(model);
-        };
-        {@/if}
-
-        {@if data.isGenerateExport == "true"}
-        //导入
-        function dc_import() {
-            dc.info.show("待实现");
         }
         {@/if}
     });

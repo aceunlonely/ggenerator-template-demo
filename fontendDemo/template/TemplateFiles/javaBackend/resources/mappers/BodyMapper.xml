@@ -2,53 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dcjet.${ddata.solution.solutionName}.dao.${data.moduleName}BodyMapper" >
   <resultMap id="BaseResultMap" type="com.dcjet.${ddata.solution.solutionName}.entity.${data.moduleName}BodyEntity" >
-    <id column="OID" property="oid" jdbcType="VARCHAR" />
-    <result column="HB_NO" property="hbNo" jdbcType="VARCHAR" />
-    <result column="G_NO" property="gNo" jdbcType="VARCHAR" />
-    <result column="CODE_T" property="codeT" jdbcType="VARCHAR" />
-    <result column="G_NAME" property="gName" jdbcType="VARCHAR" />
-    <result column="G_MODEL" property="gModel" jdbcType="VARCHAR" />
-    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
-    <result column="UNIT_1" property="unit1" jdbcType="VARCHAR" />
-    <result column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR" />
-    <result column="DEC_PRICE" property="decPrice" jdbcType="VARCHAR" />
-    <result column="CURR" property="curr" jdbcType="VARCHAR" />
-    <result column="QTY" property="qty" jdbcType="VARCHAR" />
-    <result column="USE_TYPE" property="useType" jdbcType="VARCHAR" />
-    <result column="NOTE" property="note" jdbcType="VARCHAR" />
-    <result column="MODIFY_MARK" property="modifyMark" jdbcType="VARCHAR" />
-    <result column="APPR_AMT" property="apprAmt" jdbcType="VARCHAR" />
-    <result column="DUTY_MODE" property="dutyMode" jdbcType="VARCHAR" />
-    <result column="HEAD_OID" property="headOid" jdbcType="VARCHAR" />
-    <result column="INSERT_TIME" property="insertTime" jdbcType="VARCHAR" />
-    <result column="INSERT_USER" property="insertUser" jdbcType="VARCHAR" />
-    <result column="DBSOURCE" property="dbsource" jdbcType="VARCHAR" />
-    <result column="IMG_CHANGE_OID" property="imgChangeOid" jdbcType="VARCHAR" />
-    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
-    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+    {@each data.fields.rows as di, index}
+      {@if di.PRIMARYKEY == "1" }
+    <id column="${di.FIELDNAME}" property="${di.FIELDNAME|getDcm}" jdbcType="VARCHAR" />
+      {@else}
+    <result column="${di.FIELDNAME}" property="${di.FIELDNAME|getDcm}" jdbcType="VARCHAR" />
+      {@/if}
+    {@/each}
   </resultMap>
   
   <sql id="Base_Column_List" >
   <% var temp1 = 0;%>
   {@each data.fields.rows as di, index}
      {@if temp1>0},{@/if}${di.FIELDNAME}
+     <% temp1 = temp1 + 1;%>
   {@/each}
   </sql>
   
   <sql id="condition">
   {@each data.fields.rows as di, index}
       {@if di.isQueryConditionShow == "Y"}
-    <if test="${di.FIELDNAME|getDcm} != null and ${di.FIELDNAME|getDcm} != ''">  
-		  and ${di.FIELDNAME|} = #{${di.FIELDNAME|getDcm}}
+    <if test="${di.FIELDNAME|getDcm} != null and ${di.FIELDNAME|getDcm} != ''"> 
+		  ${di|generateMapperCondition}
 	  </if>
       {@/if}
   {@/each}
   </sql>
 	
-  <select id="selectBodyListBySearch" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbImgSearch" resultMap="BaseResultMap">
+  <select id="selectBodyListBySearch" parameterType="com.dcjet.${ddata.solution.solutionName}.search.${data.moduleName}BodySearch" resultMap="BaseResultMap">
    	select t.* from (
     SELECT  <include refid="Base_Column_List" />, ROW_NUMBER () OVER (ORDER BY INSERT_TIME desc) AS RowNumber 
-    from T_ZTYTH_HB_IMG   
+    from ${data.dataSourceNameTable}   
     <where>
 		<include refid="condition"></include>
 	</where>
@@ -58,19 +42,19 @@
   
   
   <!-- 分页统计-->
-  <select id="selectBodyListCountBySearch" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbImgSearch" resultType="int">
+  <select id="selectBodyListCountBySearch" parameterType="com.dcjet.${ddata.solution.solutionName}.search.${data.moduleName}BodySearch" resultType="int">
    	SELECT COUNT(1) FROM (
-    SELECT  <include refid="Base_Column_List" /> from T_ZTYTH_HB_IMG   
+    SELECT  <include refid="Base_Column_List" /> from ${data.dataSourceNameTable}    
     <where>
 		<include refid="condition"></include>
 	</where>
     ) t 
   </select>
   
-  <select id="selectBodyListForExport" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbImgSearch" resultMap="BaseResultMap">
+  <select id="selectBodyListForExport" parameterType="com.dcjet.${ddata.solution.solutionName}.search.${data.moduleName}BodySearch" resultMap="BaseResultMap">
    	select t.* from (
     SELECT  <include refid="Base_Column_List" /> 
-    from T_ZTYTH_HB_IMG   
+    from ${data.dataSourceNameTable}  
     <where>
 		<include refid="condition"></include>
 	</where>

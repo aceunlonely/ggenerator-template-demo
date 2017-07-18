@@ -272,7 +272,69 @@ _templateEngineExt.generateEntityField = function(di)
             break;
     }
     return result + ' '+ dcm +';';
-}
+};
+
+_templateEngineExt.getEntityFieldType = function(di)
+{
+
+    var type =di.controlType;
+    var result = "";
+    switch(di.DBTYPE){
+        case "varchar":
+        case "nvarchar":
+        case "nchar":
+            result = 'String';
+            break;
+        case "number":
+        case "numeric":
+            result = 'BigDecimal';
+            break;
+        case "datetime":
+        case "date":
+            result = 'Date';
+            break;
+        case "int":
+        case "long":
+            result = 'Interger';
+            break;
+        default:
+            result = "String";
+            break;
+    }
+    return result;
+};
+
+
+_templateEngineExt.generateMapperCondition = function(di)
+{
+    /*{
+                "SCALE": "0",
+                "FIELDNAME": "JUDGE_DATE",
+                "PRIMARYKEY": "0",
+                "INTLENGTH": "23",
+                "TABLENAME": "T_ZJGL_CERT_LIST_IMG",
+                "FILEDINDEX": "12",
+                "FIELDDESC": "判定日期",
+                "LENGTH": "23",
+                "DBTYPE": "datetime",
+                "ISNULL": "1",
+                "COMLENGTH": "23.0",
+                "controlType": "1",
+                "codeType": "",
+                "importColumnType": "1",
+                "isTableShow": "Y",
+                "isQueryConditionShow": "Y",
+                "isEditShow": "Y"
+            }*/
+    //{ "1" : "非公共代码库类型" ,"autocomplete" :"autocomplete" ,"select" :"select","m-select":"m-select" ,"m-checkbox":"m-checkbox","radio":"radio"};
+
+    var dcm = _templateEngineExt.getDcm(di.FIELDNAME);
+    var type =di.controlType;
+    //and ${di.FIELDNAME|} = #{${di.FIELDNAME|getDcm}}
+    //<![CDATA[ and EXPIRY_DATE <= to_date(#{expiryDateEnd}, 'yyyy-mm-dd hh24:mi:ss') ]]>
+    return  'and ' + di.FIELDNAME + ' = #{' + dcm + '}';
+};
+
 
 
 // this is for templateEngine Ext to register

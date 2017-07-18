@@ -46,14 +46,18 @@ public class ${data.moduleName}BodyEntity extends BaseEntity<${data.moduleName}B
 	@Digits(integer = ${di.INTLENGTH}, fraction = ${di.SCALE}, message = "${di.FIELDDESC}数字范围超过限制！")
 	{@/if}
 	${di|generateEntityField}
+	
+	{@/each}
 
-	public String get${di.FIELDNAME|firstUpperCase}() {
+	{@each data.fields.rows as di, index}
+	public ${di|getEntityFieldType} get${di.FIELDNAME|firstUpperCase}() {
 		return ${di.FIELDNAME|getDcm};
 	}
 
-	public void set${di.FIELDNAME|firstUpperCase}(String ${di.FIELDNAME|getDcm}) {
+	public void set${di.FIELDNAME|firstUpperCase}(${di|getEntityFieldType} ${di.FIELDNAME|getDcm}) {
 		this.${di.FIELDNAME|getDcm} = ${di.FIELDNAME|getDcm};
 	}
-
-    {@/each}
+	
+	{@/each}
+   
 }
