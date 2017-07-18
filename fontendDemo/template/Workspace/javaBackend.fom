@@ -75,4 +75,17 @@
         <DATA>ddata.body</DATA>
     </NODE>
     {@/if}
+    <!--mappers-->
+    <NODE>
+        <SOURCE>javaBackend/resources/mappers/HeadMapper.java</SOURCE>
+        <TARGET>javaBackend/src/main/resources/mappers/${ddata.moduleName}HeadMapper.xml</TARGET>
+        <DATA>ddata</DATA>
+    </NODE>
+     {@if ddata.body}
+    <NODE>
+        <SOURCE>javaBackend/resources/mappers/BodyMapper.java</SOURCE>
+        <TARGET>javaBackend/src/main/resources/mappers/${ddata.body.moduleName}BodyMapper.xml</TARGET>
+        <DATA>ddata</DATA>
+    </NODE>
+    {@/if}
 </FOM>

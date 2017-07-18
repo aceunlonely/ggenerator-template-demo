@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dcjet.javaBackendDemo.dao.ZtythHbImgMapper" >
-  <resultMap id="BaseResultMap" type="com.dcjet.javaBackendDemo.entity.ZtythHbImgEntity" >
+<mapper namespace="com.dcjet.${ddata.solution.solutionName}.dao.${data.moduleName}BodyMapper" >
+  <resultMap id="BaseResultMap" type="com.dcjet.${ddata.solution.solutionName}.entity.${data.moduleName}BodyEntity" >
     <id column="OID" property="oid" jdbcType="VARCHAR" />
     <result column="HB_NO" property="hbNo" jdbcType="VARCHAR" />
     <result column="G_NO" property="gNo" jdbcType="VARCHAR" />
@@ -29,51 +29,20 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
- 		OID,
-        HB_NO,
-	    G_NO,
-	    CODE_T,
-	    G_NAME,
-	    G_MODEL,
-	    UNIT,
-	    UNIT_1,
-	    COUNTRY_CODE,
-	    DEC_PRICE,
-	    CURR,
-	    QTY,
-	    USE_TYPE,
-	    NOTE,
-	    MODIFY_MARK,
-	    APPR_AMT,
-	    DUTY_MODE,
-	    HEAD_OID,
-	    INSERT_TIME,
-	    INSERT_USER,
-	    DBSOURCE,
-	    IMG_CHANGE_OID,
-	    UPDATE_TIME,
-	    UPDATE_USER
+  <% var temp1 = 0;%>
+  {@each data.fields.rows as di, index}
+     {@if temp1>0},{@/if}${di.FIELDNAME}
+  {@/each}
   </sql>
   
   <sql id="condition">
-	<if test="headOid != null and headOid != ''">
-		and HEAD_OID = #{headOid}
-	</if>
-	<if test="gNo != null and gNo != ''">
-		and G_NO = #{gNo}
-	</if>
-	<if test="useType != null and useType != ''">
-		and USE_TYPE = #{useType}
-	</if>
-	<if test="codeT != null and codeT != ''">
-		and CODE_T = #{codeT}
-	</if>
-	<if test="gName != null and gName != ''">
-		and G_NAME = #{gName}
-	</if>
-	<if test="modifyMark != null and modifyMark != ''">
-		and MODIFY_MARK = #{modifyMark}
-	</if>
+  {@each data.fields.rows as di, index}
+      {@if di.isQueryConditionShow == "Y"}
+    <if test="${di.FIELDNAME|getDcm} != null and ${di.FIELDNAME|getDcm} != ''">  
+		  and ${di.FIELDNAME|} = #{${di.FIELDNAME|getDcm}}
+	  </if>
+      {@/if}
+  {@/each}
   </sql>
 	
   <select id="selectBodyListBySearch" parameterType="com.dcjet.javaBackendDemo.search.ZtythHbImgSearch" resultMap="BaseResultMap">
