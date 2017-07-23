@@ -1,5 +1,8 @@
 package com.dcjet.${ddata.solution.solutionName}.search;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import com.dcjet.${ddata.solution.solutionName}.base.BackendBaseSearch;
 
 /**
@@ -20,14 +23,22 @@ public class ${data.moduleName}HeadSearch extends BackendBaseSearch{
 	 * ${di.FIELDDESC}
 	 */
 	${di|generateEntityField}
+		{@/if}
+    {@/each}
 
-	public String get${di.FIELDNAME|firstUpperCase}() {
+	{@each data.fields.rows as di, index}
+
+	{@if di.isQueryConditionShow == "Y"}  
+	
+	public ${di|getEntityFieldType} get${di.FIELDNAME|getDcmFirstUpper}() {
 		return ${di.FIELDNAME|getDcm};
 	}
 
-	public void set${di.FIELDNAME|firstUpperCase}(String ${di.FIELDNAME|getDcm}) {
+	public void set${di.FIELDNAME|getDcmFirstUpper}(${di|getEntityFieldType} ${di.FIELDNAME|getDcm}) {
 		this.${di.FIELDNAME|getDcm} = ${di.FIELDNAME|getDcm};
 	}
-		{@/if}
-    {@/each}
+	
+	{@/if}
+
+	{@/each}
 }

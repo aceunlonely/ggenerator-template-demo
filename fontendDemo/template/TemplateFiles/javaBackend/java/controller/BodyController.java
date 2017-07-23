@@ -33,7 +33,7 @@ import com.dcjet.${ddata.solution.solutionName}.service.I${data.moduleName}BodyS
  * @author Administrator
  */
 @Controller
-@RequestMapping("/${data.moduleName}Body")
+@RequestMapping("/${data.moduleName}")
 public class ${data.moduleName}BodyController extends BackendBaseController {
 	@Resource
 	private I${data.moduleName}BodyService ${data.moduleName|firstLowerCase}BodyService; 
@@ -60,7 +60,7 @@ public class ${data.moduleName}BodyController extends BackendBaseController {
 	@ResponseBody
 	@RequestMapping("/get")
 	public ResponseResult get(String oid) {
-		${data.moduleName}BodyEntity body = ${data.moduleName|firstLowerCase}BobyService.selectById(oid);
+		${data.moduleName}BodyEntity body = ${data.moduleName|firstLowerCase}BodyService.selectById(oid);
 		ResponseResult responseResult = new ResponseResult();
 		responseResult.addData(body);
 		return responseResult;

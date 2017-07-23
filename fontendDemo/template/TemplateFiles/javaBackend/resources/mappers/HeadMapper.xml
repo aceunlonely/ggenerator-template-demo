@@ -28,10 +28,10 @@
       {@/if}
   {@/each}
   </sql>
-	
+	<!--修改排序字段-->
   <select id="selectHeadListBySearch" parameterType="com.dcjet.${ddata.solution.solutionName}.search.${data.moduleName}HeadSearch" resultMap="BaseResultMap">
    	select t.* from (
-    SELECT  <include refid="Base_Column_List" />, ROW_NUMBER () OVER (ORDER BY INSERT_TIME desc) AS RowNumber 
+    SELECT  <include refid="Base_Column_List" />, ROW_NUMBER () OVER (ORDER BY OID desc) AS RowNumber 
     from ${data.dataSourceNameTable}   
     <where>
 		<include refid="condition"></include>

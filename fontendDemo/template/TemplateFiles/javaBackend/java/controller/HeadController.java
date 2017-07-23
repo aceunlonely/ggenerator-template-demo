@@ -33,7 +33,7 @@ import com.dcjet.${ddata.solution.solutionName}.service.I${data.moduleName}HeadS
  * @author Administrator
  */
 @Controller
-@RequestMapping("/${data.moduleName}Head")
+@RequestMapping("/${data.moduleName}")
 public class ${data.moduleName}HeadController extends BackendBaseController {
 	@Resource
 	private I${data.moduleName}HeadService ${data.moduleName|firstLowerCase}HeadService; 

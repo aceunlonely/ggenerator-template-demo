@@ -22,6 +22,16 @@ _templateEngineExt.getDcm = function(str){
     return _templateEngineExt.firstLowerCase(arr.join(""));
 }
 
+//获取 首字母大写的Dcm
+_templateEngineExt.getDcmFirstUpper = function(str){
+    var r = _templateEngineExt.getDcm(str);
+    if(r.length>0)
+    {
+        return r[0].toUpperCase() + r.substring(1);
+    }
+    return r;
+}
+
 function strContains(a, obj) {
     var i = a.length;
     while (i--) {

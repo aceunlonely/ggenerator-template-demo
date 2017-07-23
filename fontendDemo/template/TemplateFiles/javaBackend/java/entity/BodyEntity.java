@@ -50,11 +50,11 @@ public class ${data.moduleName}BodyEntity extends BaseEntity<${data.moduleName}B
 	{@/each}
 
 	{@each data.fields.rows as di, index}
-	public ${di|getEntityFieldType} get${di.FIELDNAME|firstUpperCase}() {
+	public ${di|getEntityFieldType} get${di.FIELDNAME|getDcmFirstUpper}() {
 		return ${di.FIELDNAME|getDcm};
 	}
 
-	public void set${di.FIELDNAME|firstUpperCase}(${di|getEntityFieldType} ${di.FIELDNAME|getDcm}) {
+	public void set${di.FIELDNAME|getDcmFirstUpper}(${di|getEntityFieldType} ${di.FIELDNAME|getDcm}) {
 		this.${di.FIELDNAME|getDcm} = ${di.FIELDNAME|getDcm};
 	}
 	
