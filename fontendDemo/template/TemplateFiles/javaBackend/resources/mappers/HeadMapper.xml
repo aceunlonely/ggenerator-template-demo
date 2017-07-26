@@ -21,10 +21,19 @@
   
   <sql id="condition">
   {@each data.fields.rows as di, index}
-      {@if di.isQueryConditionShow == "Y"}
+    {@if di.isQueryConditionShow == "Y"}
+         {@if di.DBTYPE == 'datetime' || di.DBTYPE == 'date'}
+    <if test="${di.FIELDNAME|getDcm}Begin != null and ${di.FIELDNAME|getDcm}Begin != ''">
+       	<![CDATA[ and ${di.FIELDNAME} >= to_date(#{${di.FIELDNAME|getDcm}Begin}, 'yyyy-mm-dd hh24:mi:ss')]]>
+    </if>
+    <if test="${di.FIELDNAME|getDcm}End != null and ${di.FIELDNAME|getDcm}End != ''">
+        <![CDATA[ and ${di.FIELDNAME} <= to_date(#{${di.FIELDNAME|getDcm}End}, 'yyyy-mm-dd hh24:mi:ss') ]]>
+    </if>
+         {@else}
     <if test="${di.FIELDNAME|getDcm} != null and ${di.FIELDNAME|getDcm} != ''"> 
 		  ${di|generateMapperCondition}
 	  </if>
+         {@/if}
       {@/if}
   {@/each}
   </sql>

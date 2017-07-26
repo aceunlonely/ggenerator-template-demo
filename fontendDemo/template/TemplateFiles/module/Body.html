@@ -130,7 +130,7 @@
                 method: "POST",
                 idField: "oid",
                 checkbox: false,
-                queryParams: { "headOid": headOid },
+                queryParams: { "${data.linkField|getDcm}": headOid },
                 columns: [[
                     {
                         title: "操作", field: 'defaut_opt', formatter: function (value, row, index) {
@@ -156,7 +156,7 @@
         fieldValid: {
              <% temp1 =0;%>
                 {@each data.fields.rows as di, index}
-                        {@if di.isEditShow == "Y"}
+                        {@if di.isEditShow == "Y" && di.controlType == "1" }
             {@if temp1>0},{@/if}$${di|generateFieldValid}             
                             <% temp1 =temp1 + 1;%>
                         {@/if}
@@ -190,7 +190,7 @@
         $("#d_confirm").click(function () {
             var entity = dc.getModel("#dc-data-wrapper");
             entity.oid = editOid;
-            entity.headOid = headOid;
+            entity.${data.linkField|getDcm} = headOid;
             //控件验证
             if ($(".dc-dataTable").form("validate")) {
                 //逻辑校验
@@ -221,7 +221,9 @@
         {@if data.isGenerateExport == "true"}
         //导出
         $("#t_export").bind("click", function () {
-            dc.info.show("待实现");
+            var search = dc.getModel("#dc-search-wrapper");
+            search.${data.linkField|getDcm} = headOid;
+            window.location.href = moduleUrl + "/export?" + $.param(search);
         });
         {@/if}
 
@@ -245,14 +247,15 @@
 
     //重载表格数据
     var reloadDatagrid = function () {
-        var search = { "headOid": headOid };
-        $('#g_table').datagrid('reload', dc.getModel("#dc-search-wrapper", search));
+        var search = dc.getModel("#dc-search-wrapper");
+        search.${data.linkField|getDcm} = headOid;
+        $('#g_table').datagrid('reload', search);
     }
 
     //编辑
     var btnUpdate_click = function (oid) {
         clearEditArea();
-        dc.post(moduleUrl + "/get", { "oid": oid, "headOid": headOid }, function (data) {
+        dc.post(moduleUrl + "/get", { "oid": oid, "${data.linkField|getDcm}": headOid }, function (data) {
             if (data && data.success) {
                 var model = data.data;
                 dc.setModel("#dc-data-wrapper", model);
@@ -269,7 +272,7 @@
             fn: function (res) {
                 if (res) {
                     //调用删除
-                    dc.post(moduleUrl + "/delete", { oid: oid, "headOid": headOid }, function (data) {
+                    dc.post(moduleUrl + "/delete", { oid: oid, "${data.linkField|getDcm}": headOid }, function (data) {
                         if (data.success) {
                             dc.info.alert("操作成功");
                             closeEditArea();

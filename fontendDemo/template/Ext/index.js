@@ -146,7 +146,14 @@ _templateEngineExt.generateHeadControls = function(di)
     }
     else if(di.DBTYPE =="number" || di.DBTYPE =="numeric" )
     {
-        control ='<input id="d_' + dcm +'" dcc="'+"decimalbox"+'" dcm="'+ dcm+'" />';
+        if(di.SCALE == "0")
+        {
+                control ='<input id="d_' + dcm +'" dcc="'+"intbox"+'" dcm="'+ dcm+'" />';
+        }
+        else
+        {
+            control ='<input id="d_' + dcm +'" dcc="'+"decimalbox"+'" dcm="'+ dcm+'" />';
+        }
     }
     else if(di.DBTYPE =="long" || di.DBTYPE == "int" )
     {

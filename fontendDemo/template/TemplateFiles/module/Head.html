@@ -66,17 +66,19 @@
                 {@each data.fields.rows as di, index}
                         {@if di.isEditShow == "Y"}
                             {@if di.controlType == "autocomplete" && di.codeType!="" }
-            {@if temp1>0},{@/if}"d_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" }               
+            {@if temp1>0},{@/if}"d_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" }  
+                            <% temp1 =temp1 + 1;%>             
                             {@/if}
-                            <% temp1 =temp1 + 1;%>
+                            
                         {@/if}
+
                 {@/each}
         },
         //字段验证区域
         fieldValid: {
             <% temp1 =0;%>
                 {@each data.fields.rows as di, index}
-                        {@if di.isEditShow == "Y"}
+                        {@if di.isEditShow == "Y" && di.controlType == "1"}
 {@if temp1>0},{@/if}$${di|generateFieldValid}             
                             <% temp1 =temp1 + 1;%>
                         {@/if}

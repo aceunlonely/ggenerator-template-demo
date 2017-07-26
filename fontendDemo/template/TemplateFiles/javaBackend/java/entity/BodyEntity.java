@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,13 +38,20 @@ public class ${data.moduleName}BodyEntity extends BaseEntity<${data.moduleName}B
 	{@/if}
 	@TableField("${di.FIELDNAME}")
 	{@if di.ISNULL == "0"}
+		{@if (di.DBTYPE=="varchar" || di.DBTYPE=="nvarchar"  || di.DBTYPE=="nchar")}
 	@NotEmpty(message="${di.FIELDDESC}不能为空！")
+		{@else}
+	@NotNull(message="${di.FIELDDESC}不能为空！")
+		{@/if}
 	{@/if}
 	{@if (di.DBTYPE=="varchar" || di.DBTYPE=="nvarchar"  || di.DBTYPE=="nchar") && di.controlType =="1" && di.LENGTH }
 	@ByteLength(max = ${di.LENGTH}, message = "${di.FIELDDESC}长度超过限制！")
 	{@/if}
 	{@if di.DBTYPE=="number" || di.DBTYPE=="numeric" }
 	@Digits(integer = ${di.INTLENGTH}, fraction = ${di.SCALE}, message = "${di.FIELDDESC}数字范围超过限制！")
+	{@/if}
+	{@if di.DBTYPE=="datetime" || di.DBTYPE=="date" }
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	{@/if}
 	${di|generateEntityField}
 	
