@@ -67,7 +67,10 @@
                         {@if di.isEditShow == "Y"}
                             {@if di.controlType == "autocomplete" && di.codeType!="" }
             {@if temp1>0},{@/if}"d_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" }  
-                            <% temp1 =temp1 + 1;%>             
+                            <% temp1 =temp1 + 1;%>
+                            {@else if (di.DBTYPE == "numeric" || di.DBTYPE == "number") && di.SCALE !="0" } 
+            {@if temp1>0},{@/if}"d_${di.FIELDNAME|getDcm}": { precision: ${di.SCALE} }
+                            <% temp1 =temp1 + 1;%>          
                             {@/if}
                             
                         {@/if}
@@ -133,8 +136,7 @@
                                 }
                             });
                     } else {
-                        console.error(data.error);
-                        dc.info.warn("新增失败");
+                        dc.info.alert(data.error || "新增失败");
                     }
                 });
             }

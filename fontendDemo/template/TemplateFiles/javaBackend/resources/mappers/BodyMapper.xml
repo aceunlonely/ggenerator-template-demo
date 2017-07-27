@@ -66,7 +66,7 @@
   
   <select id="selectBodyListForExport" parameterType="com.dcjet.${ddata.solution.solutionName}.search.${data.moduleName}BodySearch" resultMap="BaseResultMap">
    	select t.* from (
-    SELECT  <include refid="Base_Column_List" /> 
+    SELECT  <include refid="Base_Column_List" /> , ROW_NUMBER () OVER (ORDER BY OID desc) AS RowNumber 
     from ${data.dataSourceNameTable}  
     <where>
 		<include refid="condition"></include>

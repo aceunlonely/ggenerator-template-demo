@@ -113,7 +113,9 @@
             {@each data.fields.rows as di, index}
                         {@if di.isEditShow == "Y"}
                             {@if di.controlType == "autocomplete" && di.codeType!="" }
-            "d_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" },              
+            "d_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" },   
+                            {@else if (di.DBTYPE == "numeric" || di.DBTYPE == "number") && di.SCALE !="0" } 
+            "d_${di.FIELDNAME|getDcm}": { precision: ${di.SCALE} },           
                             {@/if}
                         {@/if}
             {@/each}
@@ -206,8 +208,7 @@
                         });
                     }
                     else {
-                        console.error(data.data);
-                        dc.info.alert("保存失败");
+                        dc.info.alert(data.err || "保存失败");
                     }
                 });
             }

@@ -124,7 +124,7 @@ public class ${data.moduleName}HeadController extends BackendBaseController {
                         {@/if}
         {@/each}
         //Execl中sheet名称
-		String sheetName = "XXXX表";
+		String sheetName = "data";
 		try{
 			String fileName = DateTimeUtil.convertDateToString(
 					DateTimeUtil.D17_DATETIME_PATTERN, new Date())
