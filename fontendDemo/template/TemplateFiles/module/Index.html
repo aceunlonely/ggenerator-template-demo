@@ -3,15 +3,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=EDGE">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
-    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/icon.css" rel="stylesheet" />
-    <link type="text/css" href="../../res/css/dc.default.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../dcUIFramework/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="../../dcUIFramework/dc.framework-1.0.1.js"></script>
-    <script type="text/javascript" src="../../dc.pageConfig.js"></script>
     <title>${data.bigModule} Index</title>
+    <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/icon.css" rel="stylesheet" />
+    <link type="text/css" href="../../../dcUIFramework/res/css/dc.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../../dcUIFramework/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../../dcUIFramework/res/js/jquery-selectlist/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="../../../dcUIFramework/dc.framework-1.0.2.js"></script>
+    <script type="text/javascript" src="../../../dc.pageConfig.js"></script>
 </head>
 <body>
     <div class="dc-form-wrapper">
@@ -100,21 +101,21 @@
                             {@/if}
                         {@/if}
                 {@/each}
-                "s_search":{onClick:dc_search},
-                {@if contains("1",data.businessMethodTypes)}
-                "t_add": { "iconCls": "icon-dc-add" ,onClick:dc_add},
+                "s_search":{ onClick: dc_search },
+                {@if contains("1", data.businessMethodTypes)}
+                "t_add": { "iconCls": "icon-dc-add" , onClick: dc_add },
                 {@/if}
                 {@if contains("2",data.businessMethodTypes)}
-                "t_edit": { "iconCls": "icon-dc-edit",onClick:dc_edit },
+                "t_edit": { "iconCls": "icon-dc-edit", onClick: dc_edit },
                 {@/if}
                 {@if contains("3",data.businessMethodTypes)}
-                "t_del": { "iconCls": "icon-dc-remove",onClick:dc_del },
+                "t_del": { "iconCls": "icon-dc-remove", onClick: dc_del },
                 {@/if}
                 {@if data.isGenerateImport == "true"}
-                "t_import": { "iconCls": "icon-dc-import",onClick:dc_import },
+                "t_import": { "iconCls": "icon-dc-import", onClick: dc_import },
                 {@/if}
                 {@if data.isGenerateExport == "true"}
-                "t_export": { "iconCls": "icon-dc-export",onClick:dc_export },
+                "t_export": { "iconCls": "icon-dc-export", onClick: dc_export },
                 {@/if}
                 "g_table": {
                     url: moduleUrl + "/getList",
@@ -149,7 +150,7 @@
         {@if contains("1",data.businessMethodTypes)}
         //新增
         function dc_add() {
-            var addUrl = dc.util.getUrl() + ("/Tabs.html?state=add");
+            var addUrl = dc.util.getUrl() + ("/tabs.html?state=add");
             dc.out.redirect(addUrl, "新增");
         };
         {@/if}
@@ -159,7 +160,7 @@
             //获取ID
             var ids = dc.getValue("#g_table");
             if (ids && ids.length == 1) {
-                var addUrl = dc.util.getUrl() + ("/Tabs.html?state=edit&oid=" + ids[0]);
+                var addUrl = dc.util.getUrl() + ("/tabs.html?state=edit&oid=" + ids[0]);
                 dc.out.redirect(addUrl, "编辑");
             }
             else {

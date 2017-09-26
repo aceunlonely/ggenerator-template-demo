@@ -1,6 +1,9 @@
+## 空项目
+    空项目，放置在emptyProject下，分为前端和后端，暂时只做参考
+
 ## 代码使用
-    frontend 文件夹存放前端代码，直接将frontend中文件夹如base，整个拷贝的到前端代码的空项目根目录下
-    如 apolloFrontend/base
+    frontend 文件夹存放前端代码，直接将frontend中文件夹如views，整个拷贝的到前端代码的空项目根目录下
+    如 apolloFrontend/views
 
     javaBackend 文件夹存放java后端代码，里面会存在src文件夹，直接将此文件夹复制到java后端空项目根目录下，选择全部覆盖
 

@@ -2,17 +2,18 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <title>${data.bigModule} Head</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
-    <link type="text/css" href="../../dcUIFramework/jquery-easyui/themes/icon.css" rel="stylesheet" />
-    <link type="text/css" href="../../res/css/dc.default.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../dcUIFramework/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="../../dcUIFramework/dc.framework-1.0.1.js"></script>
-    <script type="text/javascript" src="../../dc.pageConfig.js"></script>
-    <title>${data.bigModule} Head</title>
+    <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/icon.css" rel="stylesheet" />
+    <link type="text/css" href="../../../dcUIFramework/res/css/dc.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../../dcUIFramework/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../../dcUIFramework/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../../dcUIFramework/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../../dcUIFramework/res/js/jquery-selectlist/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="../../../dcUIFramework/dc.framework-1.0.2.js"></script>
+    <script type="text/javascript" src="../../../dc.pageConfig.js"></script>
 </head>
 <body>
     <div class="dc-form-wrapper">
@@ -76,24 +77,28 @@
                         {@/if}
 
                 {@/each}
+            "f_confirm": { onClick: dc_save },
+            "f_cancel": { onClick: dc_back }
         },
         //字段验证区域
         fieldValid: {
             <% temp1 =0;%>
                 {@each data.fields.rows as di, index}
                         {@if di.isEditShow == "Y" && di.controlType == "1"}
-{@if temp1>0},{@/if}$${di|generateFieldValid}             
+            {@if temp1>0},{@/if}$${di|generateFieldValid}             
                             <% temp1 =temp1 + 1;%>
                         {@/if}
             {@/each}
         }
     };
+    //获取请求oid
+    var oid = dc.util.getRequest().oid;
     $(function () {
         //初始化所有控件
         dc.init();
 
         //事件绑定区域
-        var oid = dc.util.getRequest().oid;
+        
 
         //初始化页面赋值
         //dc.setValue("d_compNo", "9999999999");
@@ -106,8 +111,8 @@
             });
         }
 
-        //确认
-        $("#f_confirm").bind("click", function () {
+        //确认函数
+        function dc_save() {
             var entity = dc.getModel("form");
             entity.oid = oid;
 
@@ -141,9 +146,9 @@
                 });
             }
         });
-        //返回
-        $("#f_cancel").bind("click", function () {
-            var addUrl = dc.util.getUrl() + ("/Index.html");
+        //返回函数
+        function dc_back() {
+            var addUrl = dc.util.getUrl() + ("/index.html");
             dc.invoke("page-tabs",
                 function () {
                     this.dc.out.redirect(addUrl, "${data.bigModule} Index");
