@@ -2,27 +2,27 @@
 <FOM>
     <!--Index-->
     <NODE>
-        <SOURCE>module/Index.html</SOURCE>
-        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Index.html</TARGET>
+        <SOURCE>module/index.html</SOURCE>
+        <TARGET>frontend/views/${ddata.bigModule}/${ddata.moduleName}/index.html</TARGET>
         <DATA>ddata</DATA>
     </NODE>
     <!--Tabs-->
     <NODE>
-        <SOURCE>module/Tabs.html</SOURCE>
-        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Tabs.html</TARGET>
+        <SOURCE>module/tabs.html</SOURCE>
+        <TARGET>frontend/views/${ddata.bigModule}/${ddata.moduleName}/tabs.html</TARGET>
         <DATA>ddata</DATA>
     </NODE>
     <!--Head-->
     <NODE>
-        <SOURCE>module/Head.html</SOURCE>
-        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Head.html</TARGET>
+        <SOURCE>module/head.html</SOURCE>
+        <TARGET>frontend/views/${ddata.bigModule}/${ddata.moduleName}/head.html</TARGET>
         <DATA>ddata</DATA>
     </NODE>
     <!--Body typeof(ddata.body)!="undefined"-->
     {@if ddata.body }
     <NODE>
-        <SOURCE>module/Body.html</SOURCE>
-        <TARGET>frontend/${ddata.bigModule}/${ddata.moduleName}/Body.html</TARGET>
+        <SOURCE>module/body.html</SOURCE>
+        <TARGET>frontend/views/${ddata.bigModule}/${ddata.moduleName}/body.html</TARGET>
         <DATA>ddata.body</DATA>
     </NODE>
     {@/if}
