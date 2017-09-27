@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FOM>
+    <!--Index isGenerateSolution-->
+    {@if ddata.isGenerateSolution }
+    <NODE>
+        <SOURCE>emptyProject/apolloFrontend_empty.zip</SOURCE>
+        <TARGET>emptyProject/apolloFrontend_empty.zip</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>javaBackend_empty.fom</SOURCE>
+        <TARGET>javaBackend_empty.fom</TARGET>
+    </NODE>
+    {@else}
+    <NODE>
+        <SOURCE>frontend.fom</SOURCE>
+        <TARGET>frontend.fom</TARGET>
+        <DATA>ddata</DATA>
+    </NODE>
+    <NODE>
+        <SOURCE>javaBackend.fom</SOURCE>
+        <TARGET>javaBackend.fom</TARGET>
+        <DATA>ddata</DATA>
+    </NODE>
+    {@/if}
+</FOM>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+	<!-- 日志记录器 -->
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+		<property name="resultSetLogEnabled" value="true" />
+		<property name="statementExecutableSqlLogEnable" value="true" />
+	</bean>
+
+	<!-- sql 监控-->
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+		<property name="slowSqlMillis" value="30000" />
+		<property name="logSlowSql" value="true" />
+		<property name="mergeSql" value="true" />
+	</bean>
+	
+	<!-- sql 防火墙 -->
+	<bean id="wall-filter" class="com.alibaba.druid.wall.WallFilter"></bean>
+	
+	<!-- 业务库 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="driverClassName" value="<gg[$]>{jdbc.driverClassName}" />
+		<property name="url" value="<gg[$]>{jdbc.url}" />
+		<property name="username" value="<gg[$]>{jdbc.username}" />
+		<property name="password" value="<gg[$]>{jdbc.password}" />
+		<!-- 连接属性 -->
+		<property name="connectionProperties" value="clientEncoding=UTF-8" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="1" />
+		<!-- 连接池最大使用连接数 -->
+		<property name="maxActive" value="20" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="1" />
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="20" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!-- 
+		<property name="validationQuery" value="<gg[$]>{jdbc.validationQuery}" />
+		 -->
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="20" />
+		<!-- 自动清除无用连接 -->
+		<property name="removeAbandoned" value="false" />
+		<!-- 清除无用连接的等待时间 -->
+		<property name="removeAbandonedTimeout" value="180" />
+		<property name="logAbandoned" value="true" />
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat,wall" />
+		<property name="proxyFilters">
+			<list>
+				<ref bean="log-filter" />
+				<ref bean="stat-filter" />
+				<ref bean="wall-filter" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 公共配置库 -->
+	<bean id="publicDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+			init-method="init" destroy-method="close">
+		<property name="driverClassName" value="<gg[$]>{jdbc.public.driverClassName}" />
+		<property name="url" value="<gg[$]>{jdbc.public.url}" />
+		<property name="username" value="<gg[$]>{jdbc.public.username}" />
+		<property name="password" value="<gg[$]>{jdbc.public.password}" />
+		<property name="dbType" value="oracle" />
+		<!-- 连接属性 -->
+		<property name="connectionProperties" value="clientEncoding=UTF-8" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="1" />
+		<!-- 连接池最大使用连接数 -->
+		<property name="maxActive" value="50" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="1" />
+		<!-- 连接池最大空闲 -->
+		<!-- <property name="maxIdle" value="20" /> -->
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!--
+		<property name="validationQuery" value="SELECT 1 FROM DUAL" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		-->
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+		<!-- 自动清除无用连接 -->
+		<property name="removeAbandoned" value="false" />
+		<!-- 清除无用连接的等待时间 -->
+		<property name="removeAbandonedTimeout" value="180" />
+		<property name="logAbandoned" value="true" />
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat,wall" />
+		<property name="proxyFilters">
+			<list>
+				<ref bean="log-filter" />
+				<ref bean="stat-filter" />
+				<ref bean="wall-filter" />
+			</list>
+		</property>
+	</bean>
+</beans>

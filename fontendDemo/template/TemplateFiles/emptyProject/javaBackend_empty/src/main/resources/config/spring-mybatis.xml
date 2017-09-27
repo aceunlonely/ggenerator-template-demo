@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 业务库 -->
+	<!-- mybatis文件配置，扫描所有mapper文件 -->
+	<bean id="sqlSessionFactory"
+		class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+		<property name="dataSource" ref="dynamicDataSource" />
+		<property name="configLocation" value="classpath:config/mybatis.xml" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath:/mappers/**/*.xml</value>
+			</array>
+		</property>
+		<property name="typeAliasesPackage" value="com.dcjet.${ddata.solution.solutionName}.entity" />
+		<property name="plugins">
+			<list>
+				<bean class="com.dcjet.apollo.framework.aspects.MybatisLogInterceptor" />
+			</list>
+		</property>
+	</bean>
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.dcjet.${ddata.solution.solutionName}.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dynamicDataSource" />
+	</bean>
+
+	<!-- 定义 MP 全局策略 -->
+	<bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
+		<!-- 数据库类型配置 -->
+		<!-- 可选参数（默认mysql） MYSQL->'mysql' ORACLE->'oracle' DB2->'db2' H2->'h2' 
+			HSQL->'hsql' SQLITE->'sqlite' POSTGRE->'postgresql' SQLSERVER2005->'sqlserver2005' 
+			SQLSERVER->'sqlserver' -->
+		<property name="idType" value="2" />
+	</bean>
+
+	<!-- 动态数据源 aop <bean id="dataSourceAspect" class="com.dcjet.apollo.framework.aspects.DynamicDataSourceAspect" 
+		/> <aop:config> <aop:advisor pointcut="execution(* com.dcjet.sjg.service.*.*(..))" 
+		advice-ref="dataSourceAspect" /> </aop:config> -->
+
+	<!-- 公共配置库 -->
+	<!-- mybatis文件配置，扫描所有mapper文件 -->
+	<bean id="publicSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="publicDataSource" />
+		<property name="configLocation" value="classpath:config/mybatis.xml" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath:com/dcjet/apollo/framework/publicCode/dao/*.xml</value>
+				<value>classpath:com/dcjet/apollo/framework/jdbc/dao/*.xml</value>
+				<value>classpath:com/dcjet/apollo/framework/mail/dao/*.xml</value>
+			</array>
+		</property>
+	</bean>
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage"
+			value="com/dcjet/apollo/framework/publicCode/dao,com/dcjet/apollo/framework/jdbc/dao,com/dcjet/apollo/framework/mail/dao" />
+		<property name="sqlSessionFactoryBeanName" value="publicSqlSessionFactory"></property>
+	</bean>
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="publicTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="publicDataSource" />
+	</bean>
+</beans>
