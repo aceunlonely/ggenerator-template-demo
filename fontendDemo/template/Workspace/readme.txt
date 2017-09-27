@@ -1,5 +1,5 @@
 ## 空项目
-    空项目，放置在emptyProject下，分为前端和后端，暂时只做参考
+    空项目，放置在emptyProject下，分为前端和后端
 
 ## 代码使用
     frontend 文件夹存放前端代码，直接将frontend中文件夹如views，整个拷贝的到前端代码的空项目根目录下

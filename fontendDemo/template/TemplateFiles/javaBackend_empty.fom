@@ -1,91 +1,88 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <FOM>
-    <!--controller-->
     <NODE>
-        <SOURCE>javaBackend/java/controller/HeadController.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/controller/${ddata.moduleName}HeadController.java</TARGET>
-        <DATA>ddata</DATA>
-    </NODE>
-    {@if ddata.body}
-    <NODE>
-        <SOURCE>javaBackend/java/controller/BodyController.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/controller/${ddata.body.moduleName}BodyController.java</TARGET>
-        <DATA>ddata.body</DATA>
-    </NODE>
-    {@/if}
-    <!--dao-->
-    <NODE>
-        <SOURCE>javaBackend/java/dao/HeadMapper.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/dao/${ddata.moduleName}HeadMapper.java</TARGET>
-        <DATA>ddata</DATA>
-    </NODE>
-     {@if ddata.body}
-    <NODE>
-        <SOURCE>javaBackend/java/dao/BodyMapper.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/dao/${ddata.body.moduleName}BodyMapper.java</TARGET>
-        <DATA>ddata.body</DATA>
-    </NODE>
-    {@/if}
-     <!--entity-->
-    <NODE>
-        <SOURCE>javaBackend/java/entity/HeadEntity.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/entity/${ddata.moduleName}HeadEntity.java</TARGET>
-        <DATA>ddata</DATA>
-    </NODE>
-     {@if ddata.body}
-    <NODE>
-        <SOURCE>javaBackend/java/entity/BodyEntity.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/entity/${ddata.body.moduleName}BodyEntity.java</TARGET>
-        <DATA>ddata.body</DATA>
-    </NODE>
-    {@/if}
-    <!--search-->
-    <NODE>
-        <SOURCE>javaBackend/java/search/HeadSearch.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/search/${ddata.moduleName}HeadSearch.java</TARGET>
-        <DATA>ddata</DATA>
-    </NODE>
-     {@if ddata.body}
-    <NODE>
-        <SOURCE>javaBackend/java/search/BodySearch.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/search/${ddata.body.moduleName}BodySearch.java</TARGET>
-        <DATA>ddata.body</DATA>
-    </NODE>
-    {@/if}
-    <!--service-->
-    <NODE>
-        <SOURCE>javaBackend/java/service/IHeadService.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/service/I${ddata.moduleName}HeadService.java</TARGET>
-        <DATA>ddata</DATA>
+        <SOURCE>emptyProject/pom.xml</SOURCE>
+        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/pom.xml</TARGET>
     </NODE>
     <NODE>
-        <SOURCE>javaBackend/java/service/impl/HeadService.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/service/impl/${ddata.moduleName}HeadService.java</TARGET>
-        <DATA>ddata</DATA>
-    </NODE>
-     {@if ddata.body}
-    <NODE>
-        <SOURCE>javaBackend/java/service/IBodyService.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/service/I${ddata.body.moduleName}BodyService.java</TARGET>
-        <DATA>ddata.body</DATA>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\webapp\META-INF\MANIFEST.MF</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\webapp\META-INF\MANIFEST.MF</TARGET>
     </NODE>
     <NODE>
-        <SOURCE>javaBackend/java/service/impl/BodyService.java</SOURCE>
-        <TARGET>javaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/service/impl/${ddata.body.moduleName}BodyService.java</TARGET>
-        <DATA>ddata.body</DATA>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\webapp\WEB-INF\web.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\webapp\WEB-INF\web.xml</TARGET>
     </NODE>
-    {@/if}
-    <!--mappers-->
     <NODE>
-        <SOURCE>javaBackend/resources/mappers/HeadMapper.xml</SOURCE>
-        <TARGET>javaBackend/src/main/resources/mappers/${ddata.moduleName}HeadMapper.xml</TARGET>
-        <DATA>ddata</DATA>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\applicationContext.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\applicationContext.xml</TARGET>
     </NODE>
-     {@if ddata.body}
     <NODE>
-        <SOURCE>javaBackend/resources/mappers/BodyMapper.xml</SOURCE>
-        <TARGET>javaBackend/src/main/resources/mappers/${ddata.body.moduleName}BodyMapper.xml</TARGET>
-        <DATA>ddata.body</DATA>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\properties\jdbc.properties</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\properties\jdbc.properties</TARGET>
     </NODE>
-    {@/if}
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\properties\system.properties</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\properties\system.properties</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\config\ehcache.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\config\ehcache.xml</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\config\logback.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\config\logback.xml</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\config\mybatis.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\config\mybatis.xml</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\config\spring-apollo-framework.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\config\spring-apollo-framework.xml</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\config\spring-cxf.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\config\spring-cxf.xml</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\config\spring-druid.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\config\spring-druid.xml</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\config\spring-mybatis.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\config\spring-mybatis.xml</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\resources\config\spring-servlet.xml</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\resources\config\spring-servlet.xml</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\java\com\dcjet\xxxx\base\BackendBaseController.java</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\java\com\dcjet\${ddata.moduleName}\base\BackendBaseController.java</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\java\com\dcjet\xxxx\base\BackendBaseSearch.java</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\java\com\dcjet\${ddata.moduleName}\base\BackendBaseSearch.java</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\java\com\dcjet\xxxx\base\BackendService.java</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\java\com\dcjet\${ddata.moduleName}\base\BackendService.java</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\java\com\dcjet\xxxx\base\DataSourceProvider.java</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\java\com\dcjet\${ddata.moduleName}\base\DataSourceProvider.java</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\java\com\dcjet\xxxx\base\IBackendService.java</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\java\com\dcjet\${ddata.moduleName}\base\IBackendService.java</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\java\com\dcjet\xxxx\common\FrontendGridResult.java</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\java\com\dcjet\${ddata.moduleName}\common\FrontendGridResult.java</TARGET>
+    </NODE>
+    <NODE>
+        <SOURCE>emptyProject\javaBackend_empty\src\main\java\com\dcjet\xxxx\common\IFrontendSearch.java</SOURCE>
+        <TARGET>emptyProject\${ddata.moduleName}JavaBackend\src\main\java\com\dcjet\${ddata.moduleName}\common\IFrontendSearch.java</TARGET>
+    </NODE>
 </FOM>
+
