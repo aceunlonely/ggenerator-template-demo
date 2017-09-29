@@ -114,15 +114,21 @@
                                 fn: function () {
                                     if (!oid) {
                                         oid = data.data;
+                                        {@if ddata.body}
                                         //tab操作
                                         dc.invoke("${ddata.pageCode}-tabs",
                                             function () {
                                                 if (this.addBodyTab)
                                                     this.addBodyTab(oid);
                                             });
-
+                                        {@else}
+                                        dc_back();
+                                        {@/if}
                                     } else {
                                         //更新时，不做特殊处理
+                                        {@if !ddata.body}
+                                        dc_back();
+                                        {@/if}
                                     }
                                 }
                             });

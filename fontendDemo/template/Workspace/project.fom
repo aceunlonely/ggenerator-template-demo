@@ -4,7 +4,7 @@
     {@if ddata.isGenerateSolution }
     <NODE>
         <SOURCE>emptyProject/apolloFrontend_empty.zip</SOURCE>
-        <TARGET>emptyProject/apolloFrontend_empty.zip</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}Frontend.zip</TARGET>
     </NODE>
     <NODE>
         <SOURCE>javaBackend_empty.fom</SOURCE>

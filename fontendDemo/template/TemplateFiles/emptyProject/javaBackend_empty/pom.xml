@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dcjet</groupId>
-	<artifactId>${ddata.solution.solutionName}</artifactId>
+	<artifactId>${ddata.solution.solutionName}JavaBackend</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
-	<name>${ddata.solution.solutionName}</name>
+	<name>${ddata.solution.solutionName}JavaBackend</name>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -94,6 +94,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
+					<warName>${project.artifactId}</warName>
 					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
 					<!-- 不将 pom.xml等打进包 -->
 					<archive>

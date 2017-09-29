@@ -161,7 +161,7 @@
                     },
                     <% var temp1 =0;%>
                 {@each data.fields.rows as di, index}
-                        {@if di.isTableShow == "Y"}
+                        {@if di.isTableShow == "Y"  && ddata.body.linkField != di.FIELDNAME }
                             {@if di.DBTYPE == "datetime" || di.DBTYPE == "date" }
                     { title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}', formatter: dc.out.dateFormatter },
                             {@else}
