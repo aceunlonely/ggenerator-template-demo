@@ -1,7 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
     <title>${data.bigModule} Head</title>
     <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
     <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/icon.css" rel="stylesheet" />
@@ -26,12 +29,16 @@
                                     {@if temp % data.pageColumnCount == 0}
                             <tr>   
                                     {@/if}
+                                    {@if ddata.body.linkField != di.FIELDNAME }
                                 <th>${di.FIELDDESC}</th>
                                 <td>$${di|generateHeadControls}</td>
+                                    {@/if}
                                     {@if temp % data.pageColumnCount == data.pageColumnCount -1 }
                             </tr>   
                                     {@/if}
+                                    {@if ddata.body.linkField != di.FIELDNAME }
                                     <% temp = temp + 1; %>
+                                    {@/if}
                                 {@/if}
                             {@/each}
                             {@if temp % data.pageColumnCount >0 }
@@ -60,12 +67,16 @@
                                 {@if temp % data.pageColumnCount == 0}
                         <tr>   
                                 {@/if}
+                                {@if ddata.body.linkField != di.FIELDNAME }
                             <th>${di.FIELDDESC}</th>
                             <td>$${di|generateIndexControls}</td>
+                                {@/if}
                                 {@if temp % data.pageColumnCount == data.pageColumnCount -1 }
                         </tr>   
                                 {@/if}
+                                {@if ddata.body.linkField != di.FIELDNAME }
                                 <% temp = temp + 1; %>
+                                {@/if}
                             {@/if}
                         {@/each}
                         {@if temp % data.pageColumnCount >0 }
@@ -99,11 +110,11 @@
     dc.config = {
         page: {
             //页面code
-            pagecode:"page-body"
+            pagecode:"${ddata.pageCode}-body"
         },
         control: {
             {@each data.fields.rows as di, index}
-                        {@if di.isQueryConditionShow == "Y"}
+                        {@if di.isQueryConditionShow == "Y" && ddata.body.linkField != di.FIELDNAME }
                             {@if di.controlType == "autocomplete" && di.codeType!="" }
             "s_${di.FIELDNAME|getDcm}": { code: "${di.codeType}" , novalidate:true }, 
                             {@else if (di.DBTYPE == "numeric" || di.DBTYPE == "number") && di.SCALE !="0"}  
@@ -113,6 +124,7 @@
                             {@/if}
                         {@/if}
             {@/each}
+            "s_search": { onClick: s_search },
             {@each data.fields.rows as di, index}
                         {@if di.isEditShow == "Y"}
                             {@if di.controlType == "autocomplete" && di.codeType!="" }
@@ -122,13 +134,16 @@
                             {@/if}
                         {@/if}
             {@/each}
+            "d_hide": { onClick: d_hide },
+            "d_cancel": { onClick: d_cancel },
+            "d_confirm": { onClick: d_confirm },
             {@if data.isGenerateImport == "true"}
-            "t_import": { "iconCls": "icon-dc-import" },
+            "t_import": { "iconCls": "icon-dc-import", onClick: dc_import },
             {@/if}
             {@if data.isGenerateExport == "true"}
-            "t_export": { "iconCls": "icon-dc-export" },
+            "t_export": { "iconCls": "icon-dc-export", onClick: dc_export },
             {@/if}
-            "t_add": { "iconCls": "icon-dc-add" },
+            "t_add": { "iconCls": "icon-dc-add" , onClick: t_add },
             "t_set": { "iconCls": "icon-dc-edit" },
             "g_table": {
                 url: moduleUrl + "/getList",
@@ -148,117 +163,51 @@
                 {@each data.fields.rows as di, index}
                         {@if di.isTableShow == "Y"}
                             {@if di.DBTYPE == "datetime" || di.DBTYPE == "date" }
-                    {@if temp1>0},{@/if}{ title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}', formatter: dc.out.dateFormatter }
+                    { title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}', formatter: dc.out.dateFormatter },
                             {@else}
-                    {@if temp1>0},{@/if}{ title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}' }
+                    { title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}' },
                             {@/if}
                             <% temp1 =temp1 + 1;%>
                         {@/if}
                 {@/each}
+                    { field:"oid", hidden: true }
                 ]]
             }
         },
         fieldValid: {
-             <% temp1 =0;%>
-                {@each data.fields.rows as di, index}
-                        {@if di.isEditShow == "Y" && di.controlType == "1" }
-            {@if temp1>0},{@/if}$${di|generateFieldValid}             
+            <% temp1 =0;%>
+            {@each data.fields.rows as di, index}
+                        {@if di.isEditShow == "Y" && di.controlType == "1" && ddata.body.linkField != di.FIELDNAME }
+            $${di|generateFieldValid},            
                             <% temp1 =temp1 + 1;%>
                         {@/if}
             {@/each}
+            "dc-company":"www.dcjet.com.cn"
         }
     };
 
-    dcReady(function () {
-        //初始化所有控件
-        dc.init();
-        $(".dc-data-wrapper").hide();
-        //事件绑定区域
-        //查询
-        $("#s_search").bind("click", reloadDatagrid);
-
-        //新增
-        $("#t_add").click(function () {
-            editOid = null;
-            clearEditArea();
-            $('.dc-data-wrapper').show();
-            dc.autoHeight();
-            dc.resetValidation("#dc-data-wrapper");
-        });
-
-        //隐藏
-        $("#d_hide").click(closeEditArea);
-
-        //取消
-        $("#d_cancel").click(closeEditArea);
-
-        //确认保存
-        $("#d_confirm").click(function () {
-            var entity = dc.getModel("#dc-data-wrapper");
-            entity.oid = editOid;
-            entity.${data.linkField|getDcm} = headOid;
-            //控件验证
-            if ($(".dc-dataTable").form("validate")) {
-                //逻辑校验
-
-                //提交
-                dc.post(moduleUrl + "/edit", entity, function (data) {
-                    if (data && data.success) {
-                        dc.info.alert("保存成功", {
-                            fn: function () {
-                                closeEditArea();
-                                reloadDatagrid();
-                            }
-                        });
-                    }
-                    else {
-                        dc.info.alert(data.err || "保存失败");
-                    }
-                });
-            }
-        });
-        {@if data.isGenerateImport == "true"}
-        //导入
-        $("#t_import").bind("click", function () {
-            dc.info.show("待实现");
-        });
-        {@/if}
-        {@if data.isGenerateExport == "true"}
-        //导出
-        $("#t_export").bind("click", function () {
-            var search = dc.getModel("#dc-search-wrapper");
-            search.${data.linkField|getDcm} = headOid;
-            window.location.href = moduleUrl + "/export?" + $.param(search);
-        });
-        {@/if}
-
-    });
-
     //主id
     var editOid = null;
-
     //清除编辑区域
-    var clearEditArea = function () {
+    function clearEditArea() {
         dc.setModel("#dc-data-wrapper", null);
-    };
-
+    }
     //关闭编辑区域
-    var closeEditArea = function () {
+    function closeEditArea() {
         clearEditArea();
         $(".dc-data-wrapper").hide();
         editOid = null;
         dc.autoHeight();
-    };
-
+    }
     //重载表格数据
-    var reloadDatagrid = function () {
+    function reloadDatagrid() {
         var search = dc.getModel("#dc-search-wrapper");
         search.${data.linkField|getDcm} = headOid;
         $('#g_table').datagrid('reload', search);
     }
 
     //编辑
-    var btnUpdate_click = function (oid) {
+    function btnUpdate_click(oid) {
         clearEditArea();
         dc.post(moduleUrl + "/get", { "oid": oid, "${data.linkField|getDcm}": headOid }, function (data) {
             if (data && data.success) {
@@ -268,10 +217,10 @@
             }
         });
         $('#dc-data-wrapper').show();
-    };
+    }
 
     //删除
-    var btnDelete_click = function (oid) {
+    function btnDelete_click(oid) {
         dc.info.confirm("您确定要删除所选择的记录吗?", {
             title: "是否删除",
             fn: function (res) {
@@ -291,5 +240,74 @@
                 }
             }
         });
-    };
+    }
+    //事件绑定区域
+    //查询
+    function s_search(){
+        reloadDatagrid();
+    }
+    //新增
+    function t_add(){
+        editOid = null;
+        clearEditArea();
+        $('.dc-data-wrapper').show();
+        dc.autoHeight();
+        dc.resetValidation("#dc-data-wrapper");
+    }
+    //隐藏
+    function d_hide(){
+        closeEditArea();
+    }
+    //取消
+    function d_cancel(){
+        closeEditArea();
+    }
+
+    //确认保存
+    function d_confirm(){
+        var entity = dc.getModel("#dc-data-wrapper");
+        entity.oid = editOid;
+        entity.${data.linkField|getDcm} = headOid;
+        //控件验证
+        if ($(".dc-dataTable").form("validate")) {
+            //逻辑校验
+
+            //提交
+            dc.post(moduleUrl + "/edit", entity, function (data) {
+                if (data && data.success) {
+                    dc.info.alert("保存成功", {
+                        fn: function () {
+                            closeEditArea();
+                            reloadDatagrid();
+                        }
+                    });
+                }
+                else {
+                    dc.info.alert(data.err || "保存失败");
+                }
+            });
+        }
+    }
+    {@if data.isGenerateImport == "true"}
+    //导入
+    function dc_import()
+    {
+        dc.info.show("待实现");
+    }
+    {@/if}
+    {@if data.isGenerateExport == "true"}
+    //导出
+    function dc_export()
+    {
+        var search = dc.getModel("#dc-search-wrapper");
+        search.${data.linkField|getDcm} = headOid;
+        window.location.href = moduleUrl + "/export?" + $.param(search);
+    }
+    {@/if}
+
+    dcReady(function () {
+        //初始化所有控件
+        dc.init();
+        $(".dc-data-wrapper").hide();    
+    });
 </script>

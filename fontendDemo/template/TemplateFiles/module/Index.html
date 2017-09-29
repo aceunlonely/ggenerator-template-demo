@@ -1,8 +1,10 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=9;IE=8;IE=EDGE">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
     <title>${data.bigModule} Index</title>
     <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
     <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/icon.css" rel="stylesheet" />
@@ -75,17 +77,18 @@
 
 </html>
 <script type="text/javascript">
-    dcReady(function () {
+    
         //统一页面参数区域
         var moduleUrl = dc.project.backendUrl + "/${data.moduleName}";
 
         //控件定义区域
         dc.config = {
             page: {
-                pagecode: "page-index"
+                pagecode: "${ddata.pageCode}-index"
             },
             //字段验证区域
             fieldValid: {
+                "dc-company":"www.dcjet.com.cn"
             },
             //控件配置区域
             control:
@@ -126,33 +129,32 @@
                 {@each data.fields.rows as di, index}
                         {@if di.isTableShow == "Y"}
                             {@if di.DBTYPE == "datetime" || di.DBTYPE == "date"  }
-                        {@if temp1>0},{@/if}{ title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}', formatter: dc.out.dateFormatter }
+                        { title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}', formatter: dc.out.dateFormatter },
                             {@else}
-                        {@if temp1>0},{@/if}{ title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}' }
+                        { title: "${di.FIELDDESC}", field: '${di.FIELDNAME|getDcm}' },
                             {@/if}
 
                             <% temp1 =temp1 + 1;%>
                         {@/if}
                 {@/each}
+                        {field:"oid",hidden:true}
                     ]]
                 }
 
             }
         };
-        //初始化所有控件
-        dc.init();
 
         //事件区域
         //查询
         function dc_search() {
             $('#g_table').datagrid('reload', dc.getModel("form"));
-        };
+        }
         {@if contains("1",data.businessMethodTypes)}
         //新增
         function dc_add() {
             var addUrl = dc.util.getUrl() + ("/tabs.html?state=add");
             dc.out.redirect(addUrl, "新增");
-        };
+        }
         {@/if}
         {@if contains("2",data.businessMethodTypes)}
         //编辑
@@ -166,7 +168,7 @@
             else {
                 dc.info.alert("有且只能选中一项进行操作");
             }
-        };
+        }
         {@/if}
 
         {@if contains("3",data.businessMethodTypes)}
@@ -201,7 +203,7 @@
             else {
                 dc.info.alert("至少选中一项进行操作");
             }
-        };
+        }
         {@/if}
 
         {@if data.isGenerateImport == "true"}
@@ -218,6 +220,11 @@
             window.location.href = moduleUrl + "/export?" + $.param(model);
         }
         {@/if}
+
+
+    dcReady(function () {
+       //初始化所有控件
+       dc.init();
     });
 
 </script>

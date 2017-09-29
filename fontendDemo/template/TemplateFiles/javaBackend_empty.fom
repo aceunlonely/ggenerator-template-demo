@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <FOM>
     <NODE>
-        <SOURCE>emptyProject/pom.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/pom.xml</TARGET>
+        <SOURCE>emptyProject/javaBackend_empty/pom.xml</SOURCE>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/pom.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/webapp/META-INF/MANIFEST.MF</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/webapp/META-INF/MANIFEST.MF</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/webapp/META-INF/MANIFEST.MF</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/webapp/WEB-INF/web.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/webapp/WEB-INF/web.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/webapp/WEB-INF/web.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/applicationContext.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/applicationContext.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/applicationContext.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/properties/jdbc.properties</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/properties/jdbc.properties</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/properties/jdbc.properties</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/properties/system.properties</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/properties/system.properties</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/properties/system.properties</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/config/ehcache.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/config/ehcache.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/config/ehcache.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/config/logback.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/config/logback.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/config/logback.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/config/mybatis.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/config/mybatis.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/config/mybatis.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/config/spring-apollo-framework.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/config/spring-apollo-framework.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/config/spring-apollo-framework.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/config/spring-cxf.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/config/spring-cxf.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/config/spring-cxf.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/config/spring-druid.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/config/spring-druid.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/config/spring-druid.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/config/spring-mybatis.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/config/spring-mybatis.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/config/spring-mybatis.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/resources/config/spring-servlet.xml</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/resources/config/spring-servlet.xml</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/resources/config/spring-servlet.xml</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/java/com/dcjet/xxxx/base/BackendBaseController.java</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/java/com/dcjet/${ddata.moduleName}/base/BackendBaseController.java</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/base/BackendBaseController.java</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/java/com/dcjet/xxxx/base/BackendBaseSearch.java</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/java/com/dcjet/${ddata.moduleName}/base/BackendBaseSearch.java</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/base/BackendBaseSearch.java</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/java/com/dcjet/xxxx/base/BackendService.java</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/java/com/dcjet/${ddata.moduleName}/base/BackendService.java</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/base/BackendService.java</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/java/com/dcjet/xxxx/base/DataSourceProvider.java</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/java/com/dcjet/${ddata.moduleName}/base/DataSourceProvider.java</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/base/DataSourceProvider.java</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/java/com/dcjet/xxxx/base/IBackendService.java</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/java/com/dcjet/${ddata.moduleName}/base/IBackendService.java</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/base/IBackendService.java</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/java/com/dcjet/xxxx/common/FrontendGridResult.java</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/java/com/dcjet/${ddata.moduleName}/common/FrontendGridResult.java</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/common/FrontendGridResult.java</TARGET>
     </NODE>
     <NODE>
         <SOURCE>emptyProject/javaBackend_empty/src/main/java/com/dcjet/xxxx/common/IFrontendSearch.java</SOURCE>
-        <TARGET>emptyProject/${ddata.moduleName}JavaBackend/src/main/java/com/dcjet/${ddata.moduleName}/common/IFrontendSearch.java</TARGET>
+        <TARGET>emptyProject/${ddata.solution.solutionName}JavaBackend/src/main/java/com/dcjet/${ddata.solution.solutionName}/common/IFrontendSearch.java</TARGET>
     </NODE>
 </FOM>
 

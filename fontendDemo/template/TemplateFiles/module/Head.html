@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
     <title>${data.bigModule} Head</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/easyui.css" rel="stylesheet" />
     <link type="text/css" href="../../../dcUIFramework/jquery-easyui/themes/dcjet/icon.css" rel="stylesheet" />
     <link type="text/css" href="../../../dcUIFramework/res/css/dc.default.css" rel="stylesheet" />
@@ -59,7 +60,7 @@
     dc.config = {
         page: {
             //页面code
-            pagecode: "page-head"
+            pagecode: "${ddata.pageCode}-head"
         },
         //控件配置区域
         control: {
@@ -85,31 +86,16 @@
             <% temp1 =0;%>
                 {@each data.fields.rows as di, index}
                         {@if di.isEditShow == "Y" && di.controlType == "1"}
-            {@if temp1>0},{@/if}$${di|generateFieldValid}             
+            $${di|generateFieldValid},             
                             <% temp1 =temp1 + 1;%>
                         {@/if}
             {@/each}
+            "dc-company":"www.dcjet.com.cn"
         }
     };
     //获取请求oid
     var oid = dc.util.getRequest().oid;
-    $(function () {
-        //初始化所有控件
-        dc.init();
 
-        //事件绑定区域
-        
-
-        //初始化页面赋值
-        //dc.setValue("d_compNo", "9999999999");
-
-        if (oid) {
-            dc.post(moduleUrl + "/get", { "oid": oid }, function (data) {
-                if (data && data.success) {
-                    dc.setModel("form", data.data);
-                }
-            });
-        }
 
         //确认函数
         function dc_save() {
@@ -129,7 +115,7 @@
                                     if (!oid) {
                                         oid = data.data;
                                         //tab操作
-                                        dc.invoke("page-tabs",
+                                        dc.invoke("${ddata.pageCode}-tabs",
                                             function () {
                                                 if (this.addBodyTab)
                                                     this.addBodyTab(oid);
@@ -145,15 +131,27 @@
                     }
                 });
             }
-        });
+        }
         //返回函数
         function dc_back() {
             var addUrl = dc.util.getUrl() + ("/index.html");
-            dc.invoke("page-tabs",
+            dc.invoke("${ddata.pageCode}-tabs",
                 function () {
                     this.dc.out.redirect(addUrl, "${data.bigModule} Index");
                 });
-           
+            }
+        $(function () {
+            //初始化所有控件
+            dc.init();
+            //事件绑定区域
+            //初始化页面赋值
+            //dc.setValue("d_compNo", "9999999999");
+            if (oid) {
+                dc.post(moduleUrl + "/get", { "oid": oid }, function (data) {
+                    if (data && data.success) {
+                        dc.setModel("form", data.data);
+                    }
+                });
+            }
         });
-    });
 </script>
